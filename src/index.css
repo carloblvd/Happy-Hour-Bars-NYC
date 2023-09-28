@@ -3,3 +3,13 @@
   margin: 0;
   padding: 0;
 }
+
+.container {
+  padding: 48px;
+}
+
+.row {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}

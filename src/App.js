@@ -1,8 +1,13 @@
 import React from "react";
-import { BarData } from "./BarData";
+import Landing from "./components/Landing";
+import { Browser } from "react-router-dom";
 
 function App() {
-  return <div className="App">{BarData[0].daysAndHours.Friday}</div>;
+  return (
+    <div className="App">
+      <Landing />
+    </div>
+  );
 }
 
 export default App;
