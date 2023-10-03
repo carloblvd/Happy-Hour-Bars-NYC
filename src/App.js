@@ -1,12 +1,22 @@
 import React from "react";
-import Landing from "./components/Landing";
-import { Browser } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import BarPage from "./components/pages/BarPage";
+import AllBars from "./components/pages/AllBars";
+import Nav from "./components/ui/Nav";
+import Home from "./components/pages/HomePage";
 
 function App() {
   return (
-    <div className="App">
-      <Landing />
-    </div>
+    <Router>
+      <div className="App">
+        <Nav />
+        <Routes>
+          <Route path="/" exact element={<Home />} />
+          <Route path="/bars" element={<AllBars />} />
+          <Route path="/:barName" element={<BarPage />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
