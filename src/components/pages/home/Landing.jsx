@@ -1,5 +1,5 @@
 import React from "react";
-import LandingImg from "../../assets/undraw_beer_xg5f.svg";
+import LandingImg from "../../../assets/undraw_beer_xg5f.svg";
 import { Link } from "react-router-dom";
 
 const Landing = () => {

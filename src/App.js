@@ -1,9 +1,9 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import BarPage from "./components/pages/BarPage";
-import AllBars from "./components/pages/AllBars";
+import AllBars from "./components/pages/all bars/AllBars";
 import Nav from "./components/ui/Nav";
-import Home from "./components/pages/HomePage";
+import Home from "./components/pages/home/HomePage";
 
 function App() {
   return (

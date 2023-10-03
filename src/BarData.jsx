@@ -369,7 +369,7 @@ export const BarData = [
     locationLink:
       "https://www.google.com/maps/place/Pil+Pil/@40.7729368,-73.9584542,17z/data=!3m1!4b1!4m6!3m5!1s0x89c258bf0551e687:0x4e4e44c90b14c948!8m2!3d40.7729328!4d-73.9558793!16s%2Fg%2F1tzgq3lp?entry=ttu",
     sustenanceDeals: {
-      food: "Tapas",
+      food: ["Tapas"],
       cocktails: false,
       beer: "$7 Beer",
       wine: "$7 Sangria",
@@ -575,7 +575,7 @@ export const BarData = [
       Thursday: [16, 20],
       Friday: [16, 20],
       Saturday: "No Happy Hour",
-      Sunday: "No Happy Hour",
+      Sunday: [11, 4],
     },
     neighborhood: "Kips Bay",
     borough: "Manhattan",

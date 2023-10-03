@@ -1,7 +1,7 @@
 import React from "react";
-import aboutImgRob from "../../assets/rob img.jpeg";
-import aboutImgCarlo from "../../assets/carlo img.jpeg";
-import WaveImg from "../../assets/wave.svg";
+import aboutImgRob from "../../../assets/rob img.jpeg";
+import aboutImgCarlo from "../../../assets/carlo img.jpeg";
+import WaveImg from "../../../assets/wave.svg";
 
 const About = () => {
   return (

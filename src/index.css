@@ -94,6 +94,7 @@ nav {
   font-size: 24px;
   margin-right: 24px;
   position: relative;
+  font-weight: bold;
 }
 
 .nav__bar--link:after {
@@ -324,10 +325,7 @@ ALL BARS
 
 .borough__filter,
 .neighborhood__filter {
-  padding: 4px 8px;
-  font-size: 16px;
-  border-radius: 8px;
-  margin: 4px 0;
+  max-width: 60%;
   text-align: center;
 }
 
@@ -366,6 +364,8 @@ BAR PAGE
 
 .hours__open {
   display: flex;
+  margin-top: 36px;
+  min-height: 80px;
 }
 
 .hours__open li {
@@ -373,4 +373,36 @@ BAR PAGE
   width: calc(100% / 7);
   height: auto;
   padding: 8px;
+}
+
+.map__img {
+  margin: 12px;
+  width: 400px;
+  height: 400px;
+  border: 2px solid black;
+  border-radius: 24px;
+}
+
+.bar__content--wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.hours__open li {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  text-align: center;
+}
+
+.day_of_week {
+  font-size: 24px;
+  font-weight: bold;
+  position: absolute;
+  top: -32px;
+  left: 50%;
+  transform: translateX(-50%);
 }

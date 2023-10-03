@@ -1,6 +1,6 @@
 import React from "react";
-import Landing from "../ui/Landing";
-import About from "../ui/About";
+import Landing from "./Landing";
+import About from "./About";
 
 const Home = () => {
   return (
