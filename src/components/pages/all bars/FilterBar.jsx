@@ -61,6 +61,9 @@ const FilterBar = ({ barsShowing, allBars, setBarsShowing }) => {
     setBarsShowing(barsByNeighborhood);
   }
 
+  const filterButtons = document.getElementsByClassName("filter__btn");
+  console.log(filterButtons);
+
   return (
     <>
       <div className="filter__bar">
@@ -226,18 +229,18 @@ const FilterBar = ({ barsShowing, allBars, setBarsShowing }) => {
             <FontAwesomeIcon icon={faDrumstickBite} />
             Food?
           </button>
-          <button
-            value="reset"
-            onClick={() => {
-              setBarsShowing(allBars);
-              neighborhoodFilter.value = "default";
-              boroughFilter.value = "default";
-              setBorough(false);
-            }}
-            className="filter__btn click reset__btn">
-            Clear
-          </button>
         </div>
+        <button
+          value="reset"
+          onClick={() => {
+            setBarsShowing(allBars);
+            neighborhoodFilter.value = "default";
+            boroughFilter.value = "default";
+            setBorough(false);
+          }}
+          className="filter__btn click reset__btn">
+          Clear
+        </button>
       </div>
     </>
   );

@@ -12,6 +12,9 @@ import {
   faWhiskeyGlass,
   faDrumstickBite,
   faStar,
+  faXmark,
+  faUser,
+  faRightFromBracket,
 } from "@fortawesome/free-solid-svg-icons";
 
 library.add(
@@ -21,7 +24,10 @@ library.add(
   faMartiniGlassCitrus,
   faWhiskeyGlass,
   faDrumstickBite,
-  faStar
+  faStar,
+  faXmark,
+  faUser,
+  faRightFromBracket
 );
 
 const root = ReactDOM.createRoot(document.getElementById("root"));

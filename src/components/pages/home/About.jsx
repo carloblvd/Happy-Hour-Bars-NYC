@@ -7,7 +7,9 @@ const About = () => {
   return (
     <>
       <section id="about">
-        <img className="wave__img--top wave__img" src={WaveImg} alt="" />
+        <div className="wave__img--wrapper">
+          <img className="wave__img--top wave__img" src={WaveImg} alt="" />
+        </div>
         <div className="container">
           <div className="row">
             <h1 className="about__header">About</h1>
@@ -33,7 +35,9 @@ const About = () => {
             </div>
           </div>
         </div>
-        <img className="wave__img--bottom wave__img" src={WaveImg} alt="" />
+        <figure className="wave__img--wrapper">
+          <img className="wave__img--bottom wave__img" src={WaveImg} alt="" />
+        </figure>
       </section>
     </>
   );
