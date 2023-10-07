@@ -953,6 +953,9 @@ LARGE PHONES
 */
 
 @media (max-width: 500px) {
+  .nav__header {
+    text-shadow: 2px 2px 0px #fff;
+  }
   .nav__bar--links {
     margin-right: 12px;
   }
@@ -995,20 +998,38 @@ LARGE PHONES
     text-align: center;
   }
 
+  .link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
   .bar__tile {
-    padding: 4px 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    height: 150px;
+    width: 100%;
+    align-self: center;
   }
 
   .bar__title {
     font-size: 48px;
   }
 
+  .bar__name {
+    text-align: center;
+  }
+
   .bar__name--wrapper p {
     font-size: 12px;
+    text-align: center;
   }
 
   .bar__info--wrapper {
-    width: 60%;
+    width: 80%;
+    text-align: center;
   }
 
   .bar__info--wrapper p {
@@ -1079,12 +1100,6 @@ SMALL PHONES
 */
 
 @media (max-width: 350px) {
-  .bar__tile {
-    display: flex;
-    flex-direction: column;
-    height: 150px;
-  }
-
   .bar__name--wrapper,
   .bar__info--wrapper {
     width: 100%;
@@ -1100,5 +1115,9 @@ SMALL PHONES
 
   .modal {
     width: 90vw;
+  }
+
+  .bar__tile {
+    height: 170px;
   }
 }
