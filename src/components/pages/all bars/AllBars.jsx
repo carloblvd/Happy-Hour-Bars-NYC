@@ -1,10 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { BarData } from "../../../BarData";
 import BarTile from "./BarTile";
 import FilterBar from "./FilterBar";
 import NoResultsImg from "../../../assets/undraw_searching.svg";
+import { useNavigate } from "react-router";
 
-const AllBars = () => {
+const AllBars = ({ userLoggedIn }) => {
+  const navigate = useNavigate();
+
   const [allBars, setAllBars] = useState(
     BarData.sort((a, b) => {
       const nameA = a.barName.toLowerCase();
@@ -19,35 +22,39 @@ const AllBars = () => {
 
   return (
     <>
-      <section id="AllBars">
-        <div className="row">
+      {!userLoggedIn ? (
+        navigate("/")
+      ) : (
+        <section id="AllBars">
           <FilterBar
             setBarsShowing={setBarsShowing}
             allBars={allBars}
             barsShowing={barsShowing}
           />
-          <div className="container bar__container">
-            <ul className="bar__list">
-              {barsShowing.length > 0 ? (
-                <>
-                  {barsShowing.map((bar, index) => (
-                    <li className="bar__list--item" key={index}>
-                      <BarTile bar={bar} index={index} />
-                    </li>
-                  ))}
-                </>
-              ) : (
-                <>
-                  <figure className="no-results__img--wrapper">
-                    <img src={NoResultsImg} alt="" />
-                    <p>Sorry No Results</p>
-                  </figure>
-                </>
-              )}
-            </ul>
+          <div className="row">
+            <div className="container bar__container">
+              <ul className="bar__list">
+                {barsShowing.length > 0 ? (
+                  <>
+                    {barsShowing.map((bar, index) => (
+                      <li className="bar__list--item" key={index}>
+                        <BarTile bar={bar} index={index} />
+                      </li>
+                    ))}
+                  </>
+                ) : (
+                  <>
+                    <figure className="no-results__img--wrapper">
+                      <img src={NoResultsImg} alt="" />
+                      <p>Sorry No Results</p>
+                    </figure>
+                  </>
+                )}
+              </ul>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
     </>
   );
 };

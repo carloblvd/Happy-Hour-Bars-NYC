@@ -1,25 +1,14 @@
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { auth } from "../../firebase/init";
-import {
-  createUserWithEmailAndPassword,
-  onAuthStateChanged,
-} from "firebase/auth";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 
-const RegisterModal = ({ setUserLoggedIn, userLoggedIn, setUser, user }) => {
+const RegisterModal = ({ setUserLoggedIn, setUser, user }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [modal, setModal] = useState(false);
   const [errorMessage, setErrorMessage] = useState(false);
-
-  useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        setUser(user);
-      }
-    });
-  }, []);
 
   const showModal = () => {
     setModal(true);

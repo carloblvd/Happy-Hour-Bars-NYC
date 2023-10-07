@@ -7,15 +7,15 @@ import {
   faWineGlass,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 const FilterBar = ({ barsShowing, allBars, setBarsShowing }) => {
-  const [borough, setBorough] = useState(false);
   const [filteredBars, setFilteredBars] = useState(null);
-  const boroughFilter = document.getElementsByClassName("borough__filter");
-  const neighborhoodFilter = document.getElementsByClassName(
-    "neighborhood__filter"
-  );
+  const [buttonClicked, setButtonClicked] = useState({});
+
+  const [borough, setBorough] = useState(false);
+  const [selectedBorough, setSelectedBorough] = useState(null);
+  const [selectedNeighborhood, setSelectedNeighborhood] = useState(null);
 
   const weekday = [
     "Sunday",
@@ -46,12 +46,12 @@ const FilterBar = ({ barsShowing, allBars, setBarsShowing }) => {
   }
 
   function filterBorough(e) {
-    let barsByBorough = barsShowing.filter(
-      (bar) => bar.borough === e.target.value
-    );
+    let barsByBorough = allBars.filter((bar) => bar.borough === e.target.value);
     setBorough(e.target.value);
     setFilteredBars(barsByBorough);
     setBarsShowing(barsByBorough);
+    setSelectedBorough(e.target.value);
+    setSelectedNeighborhood(null);
   }
 
   function filterNeighborhood(e) {
@@ -59,10 +59,26 @@ const FilterBar = ({ barsShowing, allBars, setBarsShowing }) => {
       (bar) => bar.neighborhood === e.target.value
     );
     setBarsShowing(barsByNeighborhood);
+    setSelectedNeighborhood(e.target.value);
   }
 
-  const filterButtons = document.getElementsByClassName("filter__btn");
-  console.log(filterButtons);
+  function handleButtonClick(value) {
+    // Check if the button has been clicked before
+    if (!buttonClicked[value]) {
+      // If not, update its state to clicked (true)
+      const updatedButtonClicked = { ...buttonClicked };
+      updatedButtonClicked[value] = true;
+      setButtonClicked(updatedButtonClicked);
+    }
+  }
+
+  function resetFilterButtons() {
+    setButtonClicked({});
+  }
+
+  useEffect(() => {
+    console.log(selectedNeighborhood);
+  }, [selectedNeighborhood]);
 
   return (
     <>
@@ -70,14 +86,24 @@ const FilterBar = ({ barsShowing, allBars, setBarsShowing }) => {
         <div className="open-now__filter"></div>
         <div className="borough__filter">
           <button
-            className="filter__btn click"
-            onClick={filterBorough}
+            className={`filter__btn click ${
+              selectedBorough === "Manhattan" ? "selected" : ""
+            }`}
+            onClick={(e) => {
+              handleButtonClick("Manhattan");
+              filterBorough(e);
+            }}
             value="Manhattan">
             Manhattan
           </button>
           <button
-            className="filter__btn click"
-            onClick={filterBorough}
+            className={`filter__btn click ${
+              selectedBorough === "Brooklyn" ? "selected" : ""
+            }`}
+            onClick={(e) => {
+              handleButtonClick("Brooklyn");
+              filterBorough(e);
+            }}
             value="Brooklyn">
             Brooklyn
           </button>
@@ -89,80 +115,161 @@ const FilterBar = ({ barsShowing, allBars, setBarsShowing }) => {
               {borough === "Manhattan" ? (
                 <>
                   <button
-                    className="filter__btn click"
-                    onClick={filterNeighborhood}
+                    className={`filter__btn ${
+                      selectedNeighborhood === "Alphabet City"
+                        ? "selected"
+                        : "click"
+                    }`}
+                    onClick={(e) => {
+                      handleButtonClick("Alphabet City");
+                      filterNeighborhood(e);
+                    }}
                     value="Alphabet City">
                     Alphabet City
                   </button>
                   <button
-                    className="filter__btn click"
-                    onClick={filterNeighborhood}
+                    className={`filter__btn ${
+                      selectedNeighborhood === "Chelsea" ? "selected" : "click"
+                    }`}
+                    onClick={(e) => {
+                      handleButtonClick("Chelsea");
+                      filterNeighborhood(e);
+                    }}
                     value="Chelsea">
                     Chelsea
                   </button>
                   <button
-                    className="filter__btn click"
-                    onClick={filterNeighborhood}
+                    className={`filter__btn ${
+                      selectedNeighborhood === "Chinatown"
+                        ? "selected"
+                        : "click"
+                    }`}
+                    onClick={(e) => {
+                      handleButtonClick("Chinatown");
+                      filterNeighborhood(e);
+                    }}
                     value="Chinatown">
                     Chinatown
                   </button>
                   <button
-                    className="filter__btn click"
-                    onClick={filterNeighborhood}
+                    className={`filter__btn ${
+                      selectedNeighborhood === "East Village"
+                        ? "selected"
+                        : "click"
+                    }`}
+                    onClick={(e) => {
+                      handleButtonClick("East Village");
+                      filterNeighborhood(e);
+                    }}
                     value="East Village">
                     East Village
                   </button>
                   <button
-                    className="filter__btn click"
-                    onClick={filterNeighborhood}
+                    className={`filter__btn ${
+                      selectedNeighborhood === "Gramercy" ? "selected" : "click"
+                    }`}
+                    onClick={(e) => {
+                      handleButtonClick("Gramercy");
+                      filterNeighborhood(e);
+                    }}
                     value="Gramercy">
                     Gramercy
                   </button>
                   <button
-                    className="filter__btn click"
-                    onClick={filterNeighborhood}
+                    className={`filter__btn ${
+                      selectedNeighborhood === "Hell's Kitchen"
+                        ? "selected"
+                        : "click"
+                    }`}
+                    onClick={(e) => {
+                      handleButtonClick("Hell's Kitchen");
+                      filterNeighborhood(e);
+                    }}
                     value="Hell's Kitchen">
                     Hell's Kitchen
                   </button>
                   <button
-                    className="filter__btn click"
-                    onClick={filterNeighborhood}
+                    className={`filter__btn ${
+                      selectedNeighborhood === "Kips Bay" ? "selected" : "click"
+                    }`}
+                    onClick={(e) => {
+                      handleButtonClick("Kips Bay");
+                      filterNeighborhood(e);
+                    }}
                     value="Kips Bay">
                     Kips Bay
                   </button>
                   <button
-                    className="filter__btn click"
-                    onClick={filterNeighborhood}
+                    className={`filter__btn ${
+                      selectedNeighborhood === "Lower East Side"
+                        ? "selected"
+                        : "click"
+                    }`}
+                    onClick={(e) => {
+                      handleButtonClick("Lower East Side");
+                      filterNeighborhood(e);
+                    }}
                     value="Lower East Side">
                     Lower East Side
                   </button>
                   <button
-                    className="filter__btn click"
-                    onClick={filterNeighborhood}
+                    className={`filter__btn ${
+                      selectedNeighborhood === "Midtown" ? "selected" : "click"
+                    }`}
+                    onClick={(e) => {
+                      handleButtonClick("Midtown");
+                      filterNeighborhood(e);
+                    }}
                     value="Midtown">
                     Midtown
                   </button>
                   <button
-                    className="filter__btn click"
-                    onClick={filterNeighborhood}
+                    className={`filter__btn ${
+                      selectedNeighborhood === "Morningside Heights"
+                        ? "selected"
+                        : "click"
+                    }`}
+                    onClick={(e) => {
+                      handleButtonClick("Morningside Heights");
+                      filterNeighborhood(e);
+                    }}
                     value="Morningside Heights">
                     Morningside Heights
                   </button>
                   <button
-                    className="filter__btn click"
-                    onClick={filterNeighborhood}
+                    className={`filter__btn ${
+                      selectedNeighborhood === "Murray Hill"
+                        ? "selected"
+                        : "click"
+                    }`}
+                    onClick={(e) => {
+                      handleButtonClick("Murray Hill");
+                      filterNeighborhood(e);
+                    }}
                     value="Murray Hill">
                     Murray Hill
                   </button>
                   <button
-                    className="filter__btn click"
-                    onClick={filterNeighborhood}
+                    className={`filter__btn ${
+                      selectedNeighborhood === "Noho" ? "selected" : "click"
+                    }`}
+                    onClick={(e) => {
+                      handleButtonClick("Noho");
+                      filterNeighborhood(e);
+                    }}
                     value="Noho">
                     Noho
                   </button>
                   <button
-                    className="filter__btn click"
-                    onClick={filterNeighborhood}
+                    className={`filter__btn ${
+                      selectedNeighborhood === "Upper East Side"
+                        ? "selected"
+                        : "click"
+                    }`}
+                    onClick={(e) => {
+                      handleButtonClick("Upper East Side");
+                      filterNeighborhood(e);
+                    }}
                     value="Upper East Side">
                     Upper East Side
                   </button>
@@ -170,14 +277,24 @@ const FilterBar = ({ barsShowing, allBars, setBarsShowing }) => {
               ) : borough === "Brooklyn" ? (
                 <>
                   <button
-                    className="filter__btn click"
-                    onClick={filterNeighborhood}
+                    className={`filter__btn ${
+                      selectedNeighborhood === "Bushwick" ? "selected" : "click"
+                    }`}
+                    onClick={(e) => {
+                      handleButtonClick("Bushwick");
+                      filterNeighborhood(e);
+                    }}
                     value="Bushwick">
                     Bushwick
                   </button>
                   <button
-                    className="filter__btn click"
-                    onClick={filterNeighborhood}
+                    className={`filter__btn ${
+                      selectedNeighborhood === "Dumbo" ? "selected" : "click"
+                    }`}
+                    onClick={(e) => {
+                      handleButtonClick("Dumbo");
+                      filterNeighborhood(e);
+                    }}
                     value="Dumbo">
                     Dumbo
                   </button>
@@ -189,54 +306,86 @@ const FilterBar = ({ barsShowing, allBars, setBarsShowing }) => {
         <div className="filter__btns--wrapper">
           <button
             value="special_today"
-            onClick={handleFilter}
-            className="filter__btn click special-deal-today__filter">
+            onClick={(e) => {
+              handleButtonClick("special_today");
+              handleFilter(e);
+            }}
+            className={`filter__btn special-deal-today__filter ${
+              buttonClicked["special_today"] ? "clicked" : "click"
+            } `}>
             <FontAwesomeIcon icon={faStar} />
             Special Today?
           </button>
           <button
             value="beer"
-            onClick={handleFilter}
-            className="filter__btn click has-beer-deal__filter">
+            onClick={(e) => {
+              handleButtonClick("beer");
+              handleFilter(e);
+            }}
+            className={`filter__btn has-beer-deal__filter ${
+              buttonClicked["beer"] ? "clicked" : "click"
+            } `}>
             <FontAwesomeIcon icon={faBeerMugEmpty} />
             Beer?
           </button>
           <button
             value="wine"
-            onClick={handleFilter}
-            className="filter__btn click has-wine-deal__filter">
+            onClick={(e) => {
+              handleButtonClick("wine");
+              handleFilter(e);
+            }}
+            className={`filter__btn has-wine-deal__filter ${
+              buttonClicked["wine"] ? "clicked" : "click"
+            } `}>
             <FontAwesomeIcon icon={faWineGlass} />
             Wine?
           </button>
           <button
             value="cocktails"
-            onClick={handleFilter}
-            className="filter__btn click has-cocktail-deal__filter">
+            onClick={(e) => {
+              handleButtonClick("cocktails");
+              handleFilter(e);
+            }}
+            className={`filter__btn has-cocktail-deal__filter ${
+              buttonClicked["cocktails"] ? "clicked" : "click"
+            } `}>
             <FontAwesomeIcon icon={faMartiniGlassCitrus} />
             Cocktail?
           </button>
           <button
             value="shots"
-            onClick={handleFilter}
-            className="filter__btn click has-shots-deal__filter">
+            onClick={(e) => {
+              handleButtonClick("shots");
+              handleFilter(e);
+            }}
+            className={`filter__btn has-shots-deal__filter ${
+              buttonClicked["shots"] ? "clicked" : "click"
+            } `}>
             <FontAwesomeIcon icon={faWhiskeyGlass} />
             Shots?
           </button>
           <button
             value="food"
-            onClick={handleFilter}
-            className="filter__btn click has-food-deal__filter">
+            onClick={(e) => {
+              handleButtonClick("food");
+              handleFilter(e);
+            }}
+            className={`filter__btn has-food-deal__filter ${
+              buttonClicked["food"] ? "clicked" : "click"
+            } `}>
             <FontAwesomeIcon icon={faDrumstickBite} />
             Food?
           </button>
         </div>
+        <br />
         <button
           value="reset"
           onClick={() => {
             setBarsShowing(allBars);
-            neighborhoodFilter.value = "default";
-            boroughFilter.value = "default";
             setBorough(false);
+            resetFilterButtons();
+            setSelectedBorough(null);
+            setSelectedNeighborhood(null);
           }}
           className="filter__btn click reset__btn">
           Clear

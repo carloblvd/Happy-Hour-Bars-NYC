@@ -18,6 +18,18 @@ const BarPage = () => {
     "Saturday",
   ];
 
+  function selectCharactersUntilColon(inputString) {
+    const index = inputString.indexOf(":");
+    if (index !== -1) {
+      const beforeColon = <b>{inputString.slice(0, index)}</b>;
+      const colon = <b>:</b>;
+      const afterColon = inputString.slice(index + 1);
+      return [beforeColon, colon, afterColon];
+    } else {
+      return [inputString];
+    }
+  }
+
   useEffect(() => {
     const d = new Date();
     const day = weekday[d.getDay()];
@@ -76,7 +88,7 @@ const BarPage = () => {
                 <div> {convertHours(bar.daysAndHours.Monday)} </div>
                 <div className="day__special">
                   {bar.specificDaySpecial.Monday
-                    ? bar.specificDaySpecial.Monday
+                    ? selectCharactersUntilColon(bar.specificDaySpecial.Monday)
                     : null}
                 </div>
               </li>
@@ -85,7 +97,7 @@ const BarPage = () => {
                 <div> {convertHours(bar.daysAndHours.Tuesday)} </div>
                 <div>
                   {bar.specificDaySpecial.Tuesday
-                    ? bar.specificDaySpecial.Tuesday
+                    ? selectCharactersUntilColon(bar.specificDaySpecial.Tuesday)
                     : null}
                 </div>
               </li>
@@ -94,7 +106,9 @@ const BarPage = () => {
                 <div> {convertHours(bar.daysAndHours.Wednesday)} </div>
                 <div>
                   {bar.specificDaySpecial.Wednesday
-                    ? bar.specificDaySpecial.Wednesday
+                    ? selectCharactersUntilColon(
+                        bar.specificDaySpecial.Wednesday
+                      )
                     : null}
                 </div>
               </li>
@@ -103,7 +117,9 @@ const BarPage = () => {
                 <div> {convertHours(bar.daysAndHours.Thursday)} </div>
                 <div>
                   {bar.specificDaySpecial.Thursday
-                    ? bar.specificDaySpecial.Thursday
+                    ? selectCharactersUntilColon(
+                        bar.specificDaySpecial.Thursday
+                      )
                     : null}
                 </div>
               </li>
@@ -112,7 +128,7 @@ const BarPage = () => {
                 <div> {convertHours(bar.daysAndHours.Friday)} </div>
                 <div>
                   {bar.specificDaySpecial.Friday
-                    ? bar.specificDaySpecial.Friday
+                    ? selectCharactersUntilColon(bar.specificDaySpecial.Friday)
                     : null}
                 </div>
               </li>
@@ -121,7 +137,9 @@ const BarPage = () => {
                 <div> {convertHours(bar.daysAndHours.Saturday)} </div>
                 <div>
                   {bar.specificDaySpecial.Saturday
-                    ? bar.specificDaySpecial.Saturday
+                    ? selectCharactersUntilColon(
+                        bar.specificDaySpecial.Saturday
+                      )
                     : null}
                 </div>
               </li>
@@ -130,7 +148,7 @@ const BarPage = () => {
                 <div> {convertHours(bar.daysAndHours.Sunday)} </div>
                 <div>
                   {bar.specificDaySpecial.Sunday
-                    ? bar.specificDaySpecial.Sunday
+                    ? selectCharactersUntilColon(bar.specificDaySpecial.Sunday)
                     : null}
                 </div>
               </li>
@@ -139,7 +157,18 @@ const BarPage = () => {
             <div className="bar__content--wrapper">
               <ul className="sustenance__deals">
                 <li>
-                  Food:{" "}
+                  <p className="sustenance__deals--disclaimer">
+                    <h3>Disclaimer</h3>
+                    The following list exclusively features Happy Hour
+                    promotions as advertised on the website or via their
+                    respective social media channels. It's important to note
+                    that the absence of a Happy Hour promotion for a particular
+                    item at a given bar does not imply unavailability of that
+                    item on their menu.
+                  </p>
+                </li>
+                <li>
+                  <b>Food:</b>{" "}
                   {bar.sustenanceDeals.food
                     ? bar.sustenanceDeals.food.length == 1
                       ? bar.sustenanceDeals.food
@@ -147,38 +176,47 @@ const BarPage = () => {
                       ? bar.sustenanceDeals.food[0] +
                         " and " +
                         bar.sustenanceDeals.food[1]
+                      : bar.sustenanceDeals.food.length === 3
+                      ? bar.sustenanceDeals.food[0] +
+                        ", " +
+                        bar.sustenanceDeals.food[1] +
+                        ", and " +
+                        bar.sustenanceDeals.food[2]
                       : bar.sustenanceDeals.food.join(", ") + "."
                     : "No Deals"}
                 </li>
                 <li>
-                  Cocktail:{" "}
+                  <b>Cocktails:</b>{" "}
                   {bar.sustenanceDeals.cocktails
                     ? bar.sustenanceDeals.cocktails
                     : "No Deals"}
                 </li>
                 <li>
-                  Beer:{" "}
+                  <b>Beer</b>{" "}
                   {bar.sustenanceDeals.beer
                     ? bar.sustenanceDeals.beer
                     : "No Deals"}
                 </li>
                 <li>
-                  Wine:{" "}
+                  <b>Wine:</b>{" "}
                   {bar.sustenanceDeals.wine
                     ? bar.sustenanceDeals.wine
                     : "No Deals"}
                 </li>
                 <li>
-                  Shots:{" "}
+                  <b>Shots:</b>{" "}
                   {bar.sustenanceDeals.shots
                     ? bar.sustenanceDeals.shots
                     : "No Deals"}
                 </li>
+                <button
+                  className="menu__link click"
+                  target="_blank"
+                  href={bar.menuLink}>
+                  Menu/Website
+                </button>
               </ul>
-              <br />
-              <a className="menu__link" target="_blank" href={bar.menuLink}>
-                Menu
-              </a>
+
               <Map location={bar.locationLink} />
             </div>
           </div>

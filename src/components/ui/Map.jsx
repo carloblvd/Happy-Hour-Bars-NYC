@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 const Map = ({ location }) => {
   const [coordinates, setCoordinates] = useState("");
   const apiKey = "AIzaSyAH833idqMpwLT5kRxVihDepUDzt1jZuY8"; // Replace with your actual API key
-  const zoom = 15;
+  const zoom = 16;
 
   useEffect(() => {
     // Extract coordinates from the location prop

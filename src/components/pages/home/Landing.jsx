@@ -1,9 +1,8 @@
 import React from "react";
 import LandingImg from "../../../assets/undraw_beer_xg5f.svg";
 import { Link } from "react-router-dom";
-import RegisterModal from "../../ui/RegisterModal";
 
-const Landing = ({ setUserLoggedIn, userLoggedIn, setUser, user }) => {
+const Landing = ({ userLoggedIn }) => {
   return (
     <>
       <section id="landing">
@@ -26,9 +25,7 @@ const Landing = ({ setUserLoggedIn, userLoggedIn, setUser, user }) => {
                     <button className="landing__btn click">Explore Bars</button>
                   </Link>
                 ) : (
-                  <Link to="/bars">
-                    <button className="landing__btn click">Sign Up</button>
-                  </Link>
+                  <button className="landing__btn click">Sign Up</button>
                 )}
               </div>
               <figure className="landing__img--wrapper">
