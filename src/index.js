@@ -15,6 +15,8 @@ import {
   faXmark,
   faUser,
   faRightFromBracket,
+  faChevronLeft,
+  faChevronRight,
 } from "@fortawesome/free-solid-svg-icons";
 
 library.add(
@@ -27,7 +29,9 @@ library.add(
   faStar,
   faXmark,
   faUser,
-  faRightFromBracket
+  faRightFromBracket,
+  faChevronLeft,
+  faChevronRight
 );
 
 const root = ReactDOM.createRoot(document.getElementById("root"));

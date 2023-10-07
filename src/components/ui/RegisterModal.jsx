@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { auth } from "../../firebase/init";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 
-const RegisterModal = ({ setUserLoggedIn, setUser, user }) => {
+const RegisterModal = ({ currentPage, setUserLoggedIn, setUser, user }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [modal, setModal] = useState(false);
@@ -50,9 +50,17 @@ const RegisterModal = ({ setUserLoggedIn, setUser, user }) => {
 
   return (
     <>
-      <button onClick={showModal} className="register__btn click">
-        Get Started
-      </button>
+      {currentPage == "Nav" ? (
+        <button onClick={showModal} className="register__btn click">
+          Get Started
+        </button>
+      ) : currentPage == "Landing" ? (
+        <div data-aos="fade-right" data-aos-delay="1200">
+          <button onClick={showModal} className="landing__btn click">
+            Sign Up
+          </button>
+        </div>
+      ) : null}
 
       {modal ? (
         <div
@@ -102,7 +110,9 @@ const RegisterModal = ({ setUserLoggedIn, setUser, user }) => {
                     onChange={handleInputChange} // Handle input changes
                   />
                 </li>
-                <button type="submit">Sign Up!</button>
+                <button className="click" type="submit">
+                  Sign Up!
+                </button>
               </form>
             </div>
             <button onClick={closeModal} className="close__modal click">

@@ -21,8 +21,8 @@ const About = () => {
             </h1>
             <div className="about__content">
               <figure
-                data-aos="fade-right"
-                data-aos-delay="200"
+                data-aos="fade-in"
+                data-aos-delay="500"
                 className="about__img--wrapper">
                 <img src={aboutImgRob} alt="Rob Image" className="about__img" />
               </figure>
@@ -38,8 +38,8 @@ const About = () => {
                 easily share all the collected data from this website.
               </p>
               <figure
-                data-aos="fade-left"
-                data-aos-delay="200"
+                data-aos="fade-in"
+                data-aos-delay="500"
                 className="about__img--wrapper">
                 <img
                   src={aboutImgCarlo}

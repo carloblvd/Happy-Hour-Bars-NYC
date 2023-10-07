@@ -90,7 +90,9 @@ const SignInModal = ({ setUserLoggedIn, setUser, user }) => {
                     onChange={handleInputChange} // Handle input changes
                   />
                 </li>
-                <button type="submit">Login!</button>
+                <button className="click" type="submit">
+                  Login!
+                </button>
               </form>
             </div>
             <button onClick={closeModal} className="close__modal click">

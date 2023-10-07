@@ -3,7 +3,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect } from "react";
 import { useLocation } from "react-router";
 import { Link } from "react-router-dom";
-import Map from "../ui/Map";
+import Map from "../../ui/Map";
+import HoursOpenWithSlider from "./HoursOpenWithSlider";
+import HoursOpenWithoutSlider from "./HoursOpenWithoutSlider";
 
 const BarPage = () => {
   const location = useLocation();
@@ -29,16 +31,6 @@ const BarPage = () => {
       return [inputString];
     }
   }
-
-  useEffect(() => {
-    const d = new Date();
-    const day = weekday[d.getDay()];
-
-    const Today = document.getElementsByClassName(day)[0];
-    if (Today) {
-      Today.style.borderColor = "#2d2de3";
-    }
-  }, []);
 
   function convertHours(hours) {
     let openTime = hours[0];
@@ -74,7 +66,7 @@ const BarPage = () => {
             </Link>
             <div className="title__wrapper">
               <a href={bar.locationLink} target="_blank">
-                <span className="bar__title">{bar.barName}</span>
+                <div className="bar__title">{bar.barName}</div>
               </a>
               <br />
               <h2>
@@ -82,91 +74,33 @@ const BarPage = () => {
               </h2>
             </div>
             <br />
-            <ul className="hours__open">
-              <li className="Monday" value="Monday">
-                <div className="day_of_week">Monday</div>
-                <div> {convertHours(bar.daysAndHours.Monday)} </div>
-                <div className="day__special">
-                  {bar.specificDaySpecial.Monday
-                    ? selectCharactersUntilColon(bar.specificDaySpecial.Monday)
-                    : null}
-                </div>
-              </li>
-              <li className="Tuesday" value="Tuesday">
-                <div className="day_of_week">Tuesday</div>
-                <div> {convertHours(bar.daysAndHours.Tuesday)} </div>
-                <div>
-                  {bar.specificDaySpecial.Tuesday
-                    ? selectCharactersUntilColon(bar.specificDaySpecial.Tuesday)
-                    : null}
-                </div>
-              </li>
-              <li className="Wednesday" value="Wednesday">
-                <div className="day_of_week">Wednesday</div>
-                <div> {convertHours(bar.daysAndHours.Wednesday)} </div>
-                <div>
-                  {bar.specificDaySpecial.Wednesday
-                    ? selectCharactersUntilColon(
-                        bar.specificDaySpecial.Wednesday
-                      )
-                    : null}
-                </div>
-              </li>
-              <li className="Thursday" value="Thursday">
-                <div className="day_of_week">Thursday</div>
-                <div> {convertHours(bar.daysAndHours.Thursday)} </div>
-                <div>
-                  {bar.specificDaySpecial.Thursday
-                    ? selectCharactersUntilColon(
-                        bar.specificDaySpecial.Thursday
-                      )
-                    : null}
-                </div>
-              </li>
-              <li className="Friday" value="Friday">
-                <div className="day_of_week">Friday</div>
-                <div> {convertHours(bar.daysAndHours.Friday)} </div>
-                <div>
-                  {bar.specificDaySpecial.Friday
-                    ? selectCharactersUntilColon(bar.specificDaySpecial.Friday)
-                    : null}
-                </div>
-              </li>
-              <li className="Saturday" value="Saturday">
-                <div className="day_of_week">Saturday</div>
-                <div> {convertHours(bar.daysAndHours.Saturday)} </div>
-                <div>
-                  {bar.specificDaySpecial.Saturday
-                    ? selectCharactersUntilColon(
-                        bar.specificDaySpecial.Saturday
-                      )
-                    : null}
-                </div>
-              </li>
-              <li className="Sunday" value="Sunday">
-                <div className="day_of_week">Sunday</div>
-                <div> {convertHours(bar.daysAndHours.Sunday)} </div>
-                <div>
-                  {bar.specificDaySpecial.Sunday
-                    ? selectCharactersUntilColon(bar.specificDaySpecial.Sunday)
-                    : null}
-                </div>
-              </li>
+            <ul className="hours__open show_above_900px">
+              <HoursOpenWithoutSlider
+                bar={bar}
+                selectCharactersUntilColon={selectCharactersUntilColon}
+                convertHours={convertHours}
+              />
             </ul>
+            <div className="show_below_900px">
+              <HoursOpenWithSlider
+                bar={bar}
+                selectCharactersUntilColon={selectCharactersUntilColon}
+                convertHours={convertHours}
+              />
+            </div>
+
             <br />
+            <div className="sustenance__deals--disclaimer">
+              <h3>Disclaimer</h3>
+              The following list exclusively features Happy Hour promotions as
+              advertised on the website or via their respective social media
+              channels. It's important to note that the absence of a Happy Hour
+              promotion for a particular item at a given bar does not imply
+              unavailability of that item on their menu.
+            </div>
+
             <div className="bar__content--wrapper">
               <ul className="sustenance__deals">
-                <li>
-                  <p className="sustenance__deals--disclaimer">
-                    <h3>Disclaimer</h3>
-                    The following list exclusively features Happy Hour
-                    promotions as advertised on the website or via their
-                    respective social media channels. It's important to note
-                    that the absence of a Happy Hour promotion for a particular
-                    item at a given bar does not imply unavailability of that
-                    item on their menu.
-                  </p>
-                </li>
                 <li>
                   <b>Food:</b>{" "}
                   {bar.sustenanceDeals.food

@@ -40,7 +40,7 @@ const Map = ({ location }) => {
 
   return (
     <>
-      <a href={location} target="_blank">
+      <a className="map__link" href={location} target="_blank">
         <img className="map__img click" src={url} alt="Map" />
       </a>
     </>

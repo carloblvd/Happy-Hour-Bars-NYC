@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import BarPage from "./components/pages/BarPage";
+import BarPage from "./components/pages/bar page/BarPage";
 import AllBars from "./components/pages/all bars/AllBars";
 import Nav from "./components/Nav";
 import Home from "./components/pages/home/HomePage";
@@ -9,6 +9,7 @@ import { auth } from "./firebase/init";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import Footer from "./components/Footer";
+import ScrollToTop from "./components/ui/ScrollToTop";
 
 function App() {
   const [userLoggedIn, setUserLoggedIn] = useState(false);
@@ -37,6 +38,7 @@ function App() {
 
   return (
     <Router>
+      <ScrollToTop />
       <div className="App">
         <Nav
           loadingState={loadingState}

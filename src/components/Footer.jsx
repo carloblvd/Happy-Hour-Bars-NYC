@@ -45,10 +45,10 @@ const Footer = () => {
               <li className="footer__item">
                 <button className="footer__social--link click">
                   <a
-                    href="https://www.instagram.com/carloblvd/"
+                    href="https://carloblvd.github.io/Portfolio/"
                     target="_blank">
                     <span className="footer__social--logo">
-                      <FontAwesomeIcon icon={faInstagram}></FontAwesomeIcon>
+                      <FontAwesomeIcon icon={faUser}></FontAwesomeIcon>
                     </span>
                   </a>
                 </button>
@@ -56,10 +56,10 @@ const Footer = () => {
               <li className="footer__item">
                 <button className="footer__social--link click">
                   <a
-                    href="https://carloblvd.github.io/Portfolio/"
+                    href="https://www.instagram.com/carloblvd/"
                     target="_blank">
                     <span className="footer__social--logo">
-                      <FontAwesomeIcon icon={faUser}></FontAwesomeIcon>
+                      <FontAwesomeIcon icon={faInstagram}></FontAwesomeIcon>
                     </span>
                   </a>
                 </button>

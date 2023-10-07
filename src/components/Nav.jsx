@@ -37,6 +37,8 @@ const Nav = ({
     setUserLoggedIn(false);
   }
 
+  const currentPage = "Nav";
+
   return (
     <>
       <nav>
@@ -49,11 +51,7 @@ const Nav = ({
               className="nav__header">
               NYC Happy Hours
             </h1>
-            <ul
-              // data-aos="fade-in"
-              // data-aos-duration="1000"
-              // data-aos-delay="400"
-              className="nav__bar--links">
+            <ul className="nav__bar--links">
               {loadingState ? (
                 <>
                   <div className="user__icon--wrapper">
@@ -74,6 +72,7 @@ const Nav = ({
                       />
 
                       <RegisterModal
+                        currentPage={currentPage}
                         user={user}
                         setUser={setUser}
                         setUserLoggedIn={setUserLoggedIn}
