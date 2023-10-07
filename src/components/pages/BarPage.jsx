@@ -209,14 +209,13 @@ const BarPage = () => {
                     ? bar.sustenanceDeals.shots
                     : "No Deals"}
                 </li>
-                <button
+                <a
                   className="menu__link click"
                   target="_blank"
                   href={bar.menuLink}>
                   Menu/Website
-                </button>
+                </a>
               </ul>
-
               <Map location={bar.locationLink} />
             </div>
           </div>

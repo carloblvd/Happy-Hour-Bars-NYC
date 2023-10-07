@@ -42,8 +42,18 @@ const Nav = ({
       <nav>
         <div className="row">
           <div className="nav__container">
-            <h1 className="nav__header">NYC Happy Hours</h1>
-            <ul className="nav__bar--links">
+            <h1
+              data-aos="fade-in"
+              data-aos-duration="1000"
+              data-aos-delay="400"
+              className="nav__header">
+              NYC Happy Hours
+            </h1>
+            <ul
+              // data-aos="fade-in"
+              // data-aos-duration="1000"
+              // data-aos-delay="400"
+              className="nav__bar--links">
               {loadingState ? (
                 <>
                   <div className="user__icon--wrapper">

@@ -338,7 +338,7 @@ ALL BARS
 
 .borough__filter,
 .neighborhood__filter {
-  max-width: 60%;
+  max-width: 50%;
   text-align: center;
 }
 
@@ -469,6 +469,23 @@ BAR PAGE
 .menu__link:hover {
   border-color: #2d2de3;
   background-color: #9696fa70;
+}
+
+.no-results__img--wrapper {
+  margin: 24px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.no-results__img--wrapper img {
+  width: 40%;
+}
+
+.no-results__img--wrapper p {
+  font-size: 20px;
+  width: 40%;
 }
 
 /* 
@@ -637,4 +654,97 @@ MODAL
 
 .logout__btn:hover {
   background-color: #9696fa70;
+}
+
+/* 
+
+FOOTER 
+
+*/
+
+footer {
+  background-color: #242424;
+}
+
+.footer__container {
+  padding: 48px 0 24px;
+}
+
+.footer__content {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  transition: all 300ms ease;
+}
+
+.footer__home {
+  position: absolute;
+  top: -32px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #73a24e;
+  font-size: 24px;
+  border: 2px solid #73a24e;
+  padding: 4px 4px 4px 4px;
+  background-color: transparent;
+  transition: all 300ms ease;
+  border-radius: 8px;
+}
+
+.footer__home--btn {
+  position: absolute;
+  left: 50px;
+  opacity: 0;
+  color: #008300;
+}
+
+.footer__home:hover {
+  color: #008300;
+  border-color: #008300;
+  padding: 4px 88px 4px 4px;
+  transform: translateX(-30%);
+}
+
+.footer__home:hover .footer__home--btn {
+  opacity: 1;
+  transition: 300ms ease;
+  transition-delay: 300ms;
+}
+
+.footer__social--links {
+  display: flex;
+  margin: 24px 0;
+}
+
+.footer__item {
+  margin: 0 24px;
+  background-color: none;
+}
+
+.footer__social--logo {
+  color: white;
+}
+
+.footer__social--link {
+  font-size: 28px;
+  width: 50px;
+  height: 50px;
+  border: 2px solid rgba(255, 255, 255, 0.116);
+  border-radius: 999px;
+  background-color: #9696fa;
+}
+
+.footer__social--link:hover {
+  border-color: none;
+  background-color: #2d2de3;
+}
+
+.footer__social--link:hover .footer__social--logo {
+  color: white;
+}
+
+.footer__copyright {
+  color: white;
 }

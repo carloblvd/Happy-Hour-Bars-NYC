@@ -6,11 +6,18 @@ import Nav from "./components/Nav";
 import Home from "./components/pages/home/HomePage";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./firebase/init";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import Footer from "./components/Footer";
 
 function App() {
   const [userLoggedIn, setUserLoggedIn] = useState(false);
   const [user, setUser] = useState(auth);
   const [loadingState, setLoadingState] = useState(true);
+
+  AOS.init({
+    duration: 1000,
+  });
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
@@ -57,6 +64,7 @@ function App() {
           />
           <Route path="/:barName" element={<BarPage />} />
         </Routes>
+        <Footer />
       </div>
     </Router>
   );

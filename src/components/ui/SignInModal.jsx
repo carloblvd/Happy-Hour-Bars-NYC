@@ -4,7 +4,7 @@ import { auth } from "../../firebase/init";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 
-const SignInModal = ({ setUserLoggedIn, userLoggedIn, setUser, user }) => {
+const SignInModal = ({ setUserLoggedIn, setUser, user }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [modal, setModal] = useState(false);
@@ -51,7 +51,10 @@ const SignInModal = ({ setUserLoggedIn, userLoggedIn, setUser, user }) => {
         Login
       </button>
       {modal ? (
-        <div className="modal__overlay">
+        <div
+          data-aos="fade-in"
+          data-aos-duration="400"
+          className="modal__overlay">
           <div className="modal">
             <div className="modal__content">
               <h1>Login</h1>

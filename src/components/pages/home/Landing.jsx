@@ -9,7 +9,10 @@ const Landing = ({ userLoggedIn }) => {
         <div className="row">
           <div className="container">
             <div className="landing__content">
-              <div className="landing__header">
+              <div
+                data-aos="fade-right"
+                data-aos-delay="600"
+                className="landing__header">
                 <h1 className="landing__title">
                   Rob and Carlo's
                   <br />
@@ -21,14 +24,18 @@ const Landing = ({ userLoggedIn }) => {
                   happy hour specials.
                 </p>
                 {userLoggedIn ? (
-                  <Link to="/bars">
-                    <button className="landing__btn click">Explore Bars</button>
-                  </Link>
+                  <button className="landing__btn click">
+                    <Link to="/bars">Explore Bars</Link>
+                  </button>
                 ) : (
                   <button className="landing__btn click">Sign Up</button>
                 )}
               </div>
-              <figure className="landing__img--wrapper">
+              <figure
+                data-aos="fade-up"
+                data-aos-duration="1000"
+                data-aos-delay="600"
+                className="landing__img--wrapper">
                 <img src={LandingImg} alt="" className="landing__img" />
               </figure>
             </div>

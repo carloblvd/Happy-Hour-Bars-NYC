@@ -52,6 +52,14 @@ const FilterBar = ({ barsShowing, allBars, setBarsShowing }) => {
     setBarsShowing(barsByBorough);
     setSelectedBorough(e.target.value);
     setSelectedNeighborhood(null);
+    setButtonClicked({
+      beer: false,
+      cocktails: false,
+      food: false,
+      shots: false,
+      special_today: false,
+      wine: false,
+    });
   }
 
   function filterNeighborhood(e) {
@@ -60,12 +68,18 @@ const FilterBar = ({ barsShowing, allBars, setBarsShowing }) => {
     );
     setBarsShowing(barsByNeighborhood);
     setSelectedNeighborhood(e.target.value);
+    setButtonClicked({
+      beer: false,
+      cocktails: false,
+      food: false,
+      shots: false,
+      special_today: false,
+      wine: false,
+    });
   }
 
   function handleButtonClick(value) {
-    // Check if the button has been clicked before
     if (!buttonClicked[value]) {
-      // If not, update its state to clicked (true)
       const updatedButtonClicked = { ...buttonClicked };
       updatedButtonClicked[value] = true;
       setButtonClicked(updatedButtonClicked);
@@ -77,8 +91,8 @@ const FilterBar = ({ barsShowing, allBars, setBarsShowing }) => {
   }
 
   useEffect(() => {
-    console.log(selectedNeighborhood);
-  }, [selectedNeighborhood]);
+    console.log(buttonClicked);
+  }, [buttonClicked]);
 
   return (
     <>
@@ -377,7 +391,7 @@ const FilterBar = ({ barsShowing, allBars, setBarsShowing }) => {
             Food?
           </button>
         </div>
-        <br />
+
         <button
           value="reset"
           onClick={() => {

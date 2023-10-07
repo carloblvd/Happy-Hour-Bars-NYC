@@ -55,12 +55,20 @@ const RegisterModal = ({ setUserLoggedIn, setUser, user }) => {
       </button>
 
       {modal ? (
-        <div className="modal__overlay">
+        <div
+          data-aos="fade-in"
+          data-aos-duration="400"
+          className="modal__overlay">
           <div className="modal">
             <div className="modal__content">
               <h1>Sign Up</h1>
               <p className="modal__message">
                 Sign Up To Gain Access To All The Bars We've Collected!
+              </p>
+              <br />
+              <p className="modal__message">
+                This helps Carlo put on his resume how many users the website
+                has!
               </p>
               {errorMessage ? (
                 <div className="login__error--message">
@@ -79,14 +87,14 @@ const RegisterModal = ({ setUserLoggedIn, setUser, user }) => {
                     required
                     name="user_email"
                     className="form__item--input"
-                    value={email} // Set input value from state
-                    onChange={handleInputChange} // Handle input changes
+                    value={email}
+                    onChange={handleInputChange}
                   />
                 </li>
                 <li>
                   <label className="form__item--label">Password</label>
                   <input
-                    type="password" // Use password type for passwords
+                    type="password"
                     required
                     name="user_password"
                     className="form__item--input"
