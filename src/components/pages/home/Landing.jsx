@@ -31,7 +31,9 @@ const Landing = ({ userLoggedIn }) => {
                 {userLoggedIn ? (
                   <div data-aos="fade-right" data-aos-delay="800">
                     <button className="landing__btn click">
-                      <Link to="/bars">Explore Bars</Link>
+                      <Link className="black" to="/bars">
+                        Explore Bars
+                      </Link>
                     </button>
                   </div>
                 ) : (

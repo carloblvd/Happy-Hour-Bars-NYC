@@ -88,12 +88,12 @@ const Nav = ({
                         <Link to="/bars">Bars</Link>
                       </li>
                       {user ? (
-                        <div className="user__icon--wrapper " ref={modalRef}>
+                        <div className="user__icon--wrapper" ref={modalRef}>
                           <button
                             onClick={() => {
                               setUserModalOpen(!userModalOpen);
                             }}
-                            className="user__icon click">
+                            className="user__icon black click">
                             {user.email[0].toUpperCase()}
                           </button>
                           {userModalOpen ? (

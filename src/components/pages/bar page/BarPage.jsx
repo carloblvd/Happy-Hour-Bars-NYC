@@ -60,8 +60,8 @@ const BarPage = ({ userLocation }) => {
         <div className="container">
           <div className="row">
             <Link className="black" to="/bars">
-              <button className="back__btn click">
-                <FontAwesomeIcon icon={faArrowLeft} /> Back
+              <button className="back__btn black click">
+                <FontAwesomeIcon className="black" icon={faArrowLeft} /> Back
               </button>
             </Link>
             <div className="title__wrapper">
