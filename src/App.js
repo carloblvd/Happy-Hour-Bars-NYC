@@ -15,12 +15,23 @@ function App() {
   const [userLoggedIn, setUserLoggedIn] = useState(false);
   const [user, setUser] = useState(auth);
   const [loadingState, setLoadingState] = useState(true);
+  const [userLocation, setUserLocation] = useState(null);
 
   AOS.init({
     duration: 1000,
   });
 
+  function componentDidMount() {
+    navigator.geolocation.getCurrentPosition(function (position) {
+      setUserLocation({
+        latitude: position.coords.latitude,
+        longitude: position.coords.longitude,
+      });
+    });
+  }
+
   useEffect(() => {
+    componentDidMount();
     onAuthStateChanged(auth, (user) => {
       if (user) {
         setTimeout(() => {
@@ -62,9 +73,17 @@ function App() {
           />
           <Route
             path="/bars"
-            element={<AllBars userLoggedIn={userLoggedIn} />}
+            element={
+              <AllBars
+                userLocation={userLocation}
+                userLoggedIn={userLoggedIn}
+              />
+            }
           />
-          <Route path="/:barName" element={<BarPage />} />
+          <Route
+            path="/:barName"
+            element={<BarPage userLocation={userLocation} />}
+          />
         </Routes>
         <Footer />
       </div>

@@ -75,6 +75,14 @@ input:focus-visible {
   color: #242424;
 }
 
+.black {
+  color: #242424;
+}
+
+.white {
+  color: #fff;
+}
+
 /* 
 
 NAV 
@@ -134,7 +142,7 @@ nav {
 
 /* 
 
-LANDING
+LANDING 
 
 */
 
@@ -198,11 +206,12 @@ LANDING
   background-color: #9696fa;
 }
 
-/* 
+/*
 
-ABOUT 
+ABOUT
 
 */
+
 #about {
   background-color: #9696fa;
   position: relative;
@@ -255,12 +264,12 @@ ABOUT
 .wave__img--bottom {
   bottom: 0;
 }
+
 /* 
 
-ALL BARS
+ALL BARS 
 
 */
-
 .filter__bar {
   background-color: #353535;
   height: fit-content;
@@ -297,24 +306,45 @@ ALL BARS
   transition: all 300ms ease;
   padding: 8px 16px;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  flex-direction: column;
+  align-items: space-between;
+  justify-content: center;
   width: 100%;
-  height: 120px;
+  height: 150px;
   background-color: #f5f5f5;
 }
 
 .bar__tile:hover {
-  border-color: #2d2de3;
+  border-color: #07070c;
 }
 
 .bar__name {
   color: black;
+  font-size: 24px;
 }
 
-.bar__info--wrapper {
-  width: 60%;
-  margin: 8px 0;
+.bar__header--wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.bar__name--wrapper {
+  width: 30%;
+}
+
+.bar__name--wrapper p {
+  margin-top: 8px;
+}
+
+.bar__deal--wrapper {
+  width: 50%;
+  margin: 8px 8px 0 0;
+}
+
+.bar__deal--wrapper p {
+  text-align: center;
 }
 
 .filter__btns--wrapper {
@@ -362,6 +392,66 @@ ALL BARS
 .selected:hover,
 .clicked:hover {
   cursor: default;
+}
+
+.travel-style__filter {
+  display: flex;
+}
+
+.bar__tile--directions {
+  margin-top: 8px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
+
+.bar__info--wrapper {
+  text-align: center;
+  width: 20%;
+}
+
+.skeleton {
+  background-color: #dddbdd;
+  color: #dddbdd;
+  background-size: 300%;
+  position: relative;
+  overflow: hidden;
+}
+
+.bar__tile--skeleton {
+  width: 100%;
+  height: 150px;
+  border-radius: 24px;
+  border: 2px solid #d8d8d8;
+}
+
+.skeleton:after {
+  -webkit-animation: shimmer 1s infinite;
+  animation: shimmer 1s infinite;
+  background-image: linear-gradient(
+    90deg,
+    hsla(0, 0%, 100%, 0),
+    hsla(0, 0%, 100%, 0.2) 20%,
+    hsla(0, 0%, 100%, 0.5) 60%,
+    hsla(0, 0%, 100%, 0)
+  );
+  bottom: 0;
+  content: "";
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  -webkit-transform: translateX(-100%);
+  transform: translateX(-100%);
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
 }
 
 /*
@@ -427,7 +517,7 @@ BAR PAGE
 .bar__content--wrapper {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
 }
 
 .hours__open li div {
@@ -444,7 +534,7 @@ BAR PAGE
 }
 
 .sustenance__deals {
-  width: 50%;
+  width: 100%;
   display: flex;
   flex-direction: column;
 }
@@ -497,6 +587,56 @@ BAR PAGE
 .no-results__img--wrapper p {
   font-size: 20px;
   width: 40%;
+}
+
+.directions__wrapper {
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+  align-items: center;
+}
+
+.directions__content--wrapper {
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+  align-items: center;
+}
+
+.left__wrapper {
+  width: 50%;
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+}
+
+.bar__page--directions {
+  border: 2px solid #d8d8d8;
+  padding: 4px 8px;
+  margin-top: 8px;
+  text-align: center;
+  width: auto;
+}
+
+.bar__page--directions:hover {
+  border-color: #2d2de3;
+}
+
+.directions__btns--wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.directions__btns--wrapper button {
+  padding: 4px 8px;
+  background-color: transparent;
+  border: 2px solid #2d2de3;
+  border-radius: 8px;
+}
+
+.directions__btns--wrapper button:hover {
+  background-color: #9696fa70;
 }
 
 /* 
@@ -771,7 +911,8 @@ footer {
 
 .show_below_900px {
   visibility: hidden;
-  position: absolute;
+  position: fixed;
+  opacity: 1;
   z-index: -10;
 }
 
@@ -791,7 +932,7 @@ LARGE TABLETS
   .show_above_900px {
     visibility: hidden;
     opacity: 0;
-    position: absolute;
+    position: fixed;
   }
 
   .show_below_900px {
@@ -833,6 +974,7 @@ LARGE TABLETS
     justify-content: center;
     background-color: #9696fa;
     transition: all 300ms ease;
+    color: #fff;
   }
 
   .slider-btn:hover {
@@ -900,7 +1042,7 @@ TABLETS
   }
 
   .bar__name--wrapper p,
-  .bar__info--wrapper {
+  .bar__deal--wrapper {
     font-size: 14px;
   }
 
@@ -913,6 +1055,11 @@ TABLETS
 
   .bar__title {
     text-align: center;
+  }
+
+  .bar__tile--hours,
+  .bar__info--wrapper p {
+    font-size: 14px;
   }
 
   .bar__content--wrapper {
@@ -949,6 +1096,16 @@ TABLETS
 
   .title__wrapper {
     text-align: center;
+  }
+
+  .left__wrapper {
+    width: 100%;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .directions__wrapper {
+    margin-top: 24px;
   }
 }
 
@@ -1005,7 +1162,30 @@ LARGE PHONES
   }
 
   .bar__tile {
-    padding: 4px 8px;
+    padding: 16px;
+    height: 200px;
+  }
+
+  .bar__header--wrapper {
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+  }
+
+  .bar__info--wrapper,
+  .bar__deal--wrapper,
+  .bar__name--wrapper,
+  .bar__header--wrapper {
+    width: 100%;
+    text-align: center;
+  }
+
+  .bar__info--wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 12px 0 0;
   }
 
   .bar__title {
@@ -1016,12 +1196,17 @@ LARGE PHONES
     font-size: 12px;
   }
 
-  .bar__info--wrapper {
-    width: 60%;
+  .bar__deal--wrapper {
+    margin: 12px 0 0;
   }
 
-  .bar__info--wrapper p {
+  .bar__deal--wrapper p {
     font-size: 12px;
+    width: 100%;
+  }
+
+  .bar__page--directions {
+    border-color: #2d2de3;
   }
 
   #bar__page {
@@ -1087,16 +1272,16 @@ SMALL PHONES
 
 */
 
-@media (max-width: 350px) {
+@media (max-width: 450px) {
   .bar__tile {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    height: 160px;
+    height: 220px;
   }
 
   .bar__name--wrapper,
-  .bar__info--wrapper {
+  .bar__deal--wrapper {
     width: 100%;
   }
 

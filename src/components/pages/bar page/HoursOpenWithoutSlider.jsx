@@ -5,23 +5,28 @@ const HoursOpenWithoutSlider = ({
   selectCharactersUntilColon,
   convertHours,
 }) => {
-  const weekday = [
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-  ];
-
   useEffect(() => {
+    const weekday = [
+      "Sunday",
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+    ];
     const d = new Date();
-    const day = weekday[d.getDay()];
+    const currentDay = weekday[d.getDay()]; // Get the current day of the week
 
-    const Today = document.getElementsByClassName(day)[0];
-    if (Today) {
-      Today.style.border = "2px solid #2d2de3";
+    // Loop through all days of the week
+    for (let i = 0; i < weekday.length; i++) {
+      const day = weekday[i];
+      const element = document.getElementsByClassName(day)[0];
+
+      if (element) {
+        // Set the border color based on whether it's the current day or not
+        element.style.borderColor = day === currentDay ? "#2d2de3" : "#d8d8d8";
+      }
     }
   }, []);
 

@@ -9,11 +9,19 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect, useState } from "react";
 
-const FilterBar = ({ barsShowing, allBars, setBarsShowing }) => {
+const FilterBar = ({
+  barsShowing,
+  allBars,
+  setBarsShowing,
+  setTravelingStyle,
+  barTravelTimes,
+  travelingStyle,
+}) => {
   const [filteredBars, setFilteredBars] = useState(null);
   const [buttonClicked, setButtonClicked] = useState({});
 
   const [borough, setBorough] = useState(false);
+  const [selectedTravelingStyle, setSelectedTravelingStyle] = useState(null);
   const [selectedBorough, setSelectedBorough] = useState(null);
   const [selectedNeighborhood, setSelectedNeighborhood] = useState(null);
 
@@ -26,6 +34,13 @@ const FilterBar = ({ barsShowing, allBars, setBarsShowing }) => {
     "Friday",
     "Saturday",
   ];
+
+  // useEffect(() => {
+  //   setBarsSortedByDuration(
+  //     [...barTravelTimes].sort((a, b) => a.duration - b.duration)
+  //   );
+  //   console.log(SortedByDuration);
+  // }, [barTravelTimes]);
 
   const d = new Date();
   let day = weekday[d.getDay()];
@@ -90,9 +105,21 @@ const FilterBar = ({ barsShowing, allBars, setBarsShowing }) => {
     setButtonClicked({});
   }
 
-  useEffect(() => {
-    console.log(buttonClicked);
-  }, [buttonClicked]);
+  function filterByDuration() {
+    const barsSortedByDuration = [...barTravelTimes].sort(
+      (a, b) => a.duration - b.duration
+    );
+
+    if (barTravelTimes && barsShowing) {
+      const barsShowingOrdered = barsSortedByDuration
+        .map(({ barName }) =>
+          barsShowing.find((bar) => bar.barName === barName)
+        )
+        .filter((bar) => bar); // Filter out undefined (not found in barsShowing)
+
+      setBarsShowing(barsShowingOrdered);
+    }
+  }
 
   return (
     <>
@@ -106,6 +133,7 @@ const FilterBar = ({ barsShowing, allBars, setBarsShowing }) => {
             onClick={(e) => {
               handleButtonClick("Manhattan");
               filterBorough(e);
+              setSelectedTravelingStyle(null);
             }}
             value="Manhattan">
             Manhattan
@@ -117,12 +145,12 @@ const FilterBar = ({ barsShowing, allBars, setBarsShowing }) => {
             onClick={(e) => {
               handleButtonClick("Brooklyn");
               filterBorough(e);
+              setSelectedTravelingStyle(null);
             }}
             value="Brooklyn">
             Brooklyn
           </button>
         </div>
-
         {borough ? (
           <>
             <div className="neighborhood__filter">
@@ -137,6 +165,7 @@ const FilterBar = ({ barsShowing, allBars, setBarsShowing }) => {
                     onClick={(e) => {
                       handleButtonClick("Alphabet City");
                       filterNeighborhood(e);
+                      setSelectedTravelingStyle(null);
                     }}
                     value="Alphabet City">
                     Alphabet City
@@ -148,6 +177,7 @@ const FilterBar = ({ barsShowing, allBars, setBarsShowing }) => {
                     onClick={(e) => {
                       handleButtonClick("Chelsea");
                       filterNeighborhood(e);
+                      setSelectedTravelingStyle(null);
                     }}
                     value="Chelsea">
                     Chelsea
@@ -161,6 +191,7 @@ const FilterBar = ({ barsShowing, allBars, setBarsShowing }) => {
                     onClick={(e) => {
                       handleButtonClick("Chinatown");
                       filterNeighborhood(e);
+                      setSelectedTravelingStyle(null);
                     }}
                     value="Chinatown">
                     Chinatown
@@ -174,6 +205,7 @@ const FilterBar = ({ barsShowing, allBars, setBarsShowing }) => {
                     onClick={(e) => {
                       handleButtonClick("East Village");
                       filterNeighborhood(e);
+                      setSelectedTravelingStyle(null);
                     }}
                     value="East Village">
                     East Village
@@ -185,6 +217,7 @@ const FilterBar = ({ barsShowing, allBars, setBarsShowing }) => {
                     onClick={(e) => {
                       handleButtonClick("Gramercy");
                       filterNeighborhood(e);
+                      setSelectedTravelingStyle(null);
                     }}
                     value="Gramercy">
                     Gramercy
@@ -198,6 +231,7 @@ const FilterBar = ({ barsShowing, allBars, setBarsShowing }) => {
                     onClick={(e) => {
                       handleButtonClick("Hell's Kitchen");
                       filterNeighborhood(e);
+                      setSelectedTravelingStyle(null);
                     }}
                     value="Hell's Kitchen">
                     Hell's Kitchen
@@ -209,6 +243,7 @@ const FilterBar = ({ barsShowing, allBars, setBarsShowing }) => {
                     onClick={(e) => {
                       handleButtonClick("Kips Bay");
                       filterNeighborhood(e);
+                      setSelectedTravelingStyle(null);
                     }}
                     value="Kips Bay">
                     Kips Bay
@@ -222,6 +257,7 @@ const FilterBar = ({ barsShowing, allBars, setBarsShowing }) => {
                     onClick={(e) => {
                       handleButtonClick("Lower East Side");
                       filterNeighborhood(e);
+                      setSelectedTravelingStyle(null);
                     }}
                     value="Lower East Side">
                     Lower East Side
@@ -233,6 +269,7 @@ const FilterBar = ({ barsShowing, allBars, setBarsShowing }) => {
                     onClick={(e) => {
                       handleButtonClick("Midtown");
                       filterNeighborhood(e);
+                      setSelectedTravelingStyle(null);
                     }}
                     value="Midtown">
                     Midtown
@@ -246,6 +283,7 @@ const FilterBar = ({ barsShowing, allBars, setBarsShowing }) => {
                     onClick={(e) => {
                       handleButtonClick("Morningside Heights");
                       filterNeighborhood(e);
+                      setSelectedTravelingStyle(null);
                     }}
                     value="Morningside Heights">
                     Morningside Heights
@@ -259,6 +297,7 @@ const FilterBar = ({ barsShowing, allBars, setBarsShowing }) => {
                     onClick={(e) => {
                       handleButtonClick("Murray Hill");
                       filterNeighborhood(e);
+                      setSelectedTravelingStyle(null);
                     }}
                     value="Murray Hill">
                     Murray Hill
@@ -270,6 +309,7 @@ const FilterBar = ({ barsShowing, allBars, setBarsShowing }) => {
                     onClick={(e) => {
                       handleButtonClick("Noho");
                       filterNeighborhood(e);
+                      setSelectedTravelingStyle(null);
                     }}
                     value="Noho">
                     Noho
@@ -283,6 +323,7 @@ const FilterBar = ({ barsShowing, allBars, setBarsShowing }) => {
                     onClick={(e) => {
                       handleButtonClick("Upper East Side");
                       filterNeighborhood(e);
+                      setSelectedTravelingStyle(null);
                     }}
                     value="Upper East Side">
                     Upper East Side
@@ -297,6 +338,7 @@ const FilterBar = ({ barsShowing, allBars, setBarsShowing }) => {
                     onClick={(e) => {
                       handleButtonClick("Bushwick");
                       filterNeighborhood(e);
+                      setSelectedTravelingStyle(null);
                     }}
                     value="Bushwick">
                     Bushwick
@@ -308,6 +350,7 @@ const FilterBar = ({ barsShowing, allBars, setBarsShowing }) => {
                     onClick={(e) => {
                       handleButtonClick("Dumbo");
                       filterNeighborhood(e);
+                      setSelectedTravelingStyle(null);
                     }}
                     value="Dumbo">
                     Dumbo
@@ -317,6 +360,53 @@ const FilterBar = ({ barsShowing, allBars, setBarsShowing }) => {
             </div>
           </>
         ) : null}
+        <div className="travel-style__filter">
+          <button
+            value="DRIVING"
+            className={`filter__btn ${
+              selectedTravelingStyle == "DRIVING" ? "selected" : "click"
+            }  `}
+            onClick={() => {
+              handleButtonClick("DRIVING");
+              setTravelingStyle("DRIVING");
+              setSelectedTravelingStyle("DRIVING");
+              setTimeout(() => {
+                filterByDuration();
+              }, 500);
+            }}>
+            Closest Driving
+          </button>
+          <button
+            value="TRANSIT"
+            className={`filter__btn  ${
+              selectedTravelingStyle == "TRANSIT" ? "selected" : "click"
+            }  `}
+            onClick={() => {
+              handleButtonClick("TRANSIT");
+              setTravelingStyle("TRANSIT");
+              setSelectedTravelingStyle("TRANSIT");
+              setTimeout(() => {
+                filterByDuration();
+              }, 300);
+            }}>
+            Closest On Subway
+          </button>
+          <button
+            value="WALKING"
+            className={`filter__btn  ${
+              selectedTravelingStyle == "WALKING" ? "selected" : "click"
+            }  `}
+            onClick={() => {
+              handleButtonClick("WALKING");
+              setTravelingStyle("WALKING");
+              setSelectedTravelingStyle("WALKING");
+              setTimeout(() => {
+                filterByDuration();
+              }, 500);
+            }}>
+            Closest Walking
+          </button>
+        </div>
         <div className="filter__btns--wrapper">
           <button
             value="special_today"
@@ -391,7 +481,6 @@ const FilterBar = ({ barsShowing, allBars, setBarsShowing }) => {
             Food?
           </button>
         </div>
-
         <button
           value="reset"
           onClick={() => {
@@ -400,6 +489,8 @@ const FilterBar = ({ barsShowing, allBars, setBarsShowing }) => {
             resetFilterButtons();
             setSelectedBorough(null);
             setSelectedNeighborhood(null);
+            setSelectedTravelingStyle(null);
+            setTravelingStyle("TRANSIT");
           }}
           className="filter__btn click reset__btn">
           Clear

@@ -1,24 +1,20 @@
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router";
 import { Link } from "react-router-dom";
 import Map from "../../ui/Map";
 import HoursOpenWithSlider from "./HoursOpenWithSlider";
 import HoursOpenWithoutSlider from "./HoursOpenWithoutSlider";
+import Directions from "../../ui/Directions";
 
-const BarPage = () => {
+const BarPage = ({ userLocation }) => {
   const location = useLocation();
-  const bar = location.state;
-  const weekday = [
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-  ];
+  const { bar, travelingStyle } = location.state;
+  const [barPageTravelingStyle, setBarPageTravelingStyle] =
+    useState(travelingStyle);
+  const [coordinates, setCoordinates] = useState("");
+  const apiKey = "AIzaSyAH833idqMpwLT5kRxVihDepUDzt1jZuY8";
 
   function selectCharactersUntilColon(inputString) {
     const index = inputString.indexOf(":");
@@ -54,12 +50,16 @@ const BarPage = () => {
     }`;
   }
 
+  useEffect(() => {
+    setBarPageTravelingStyle(travelingStyle);
+  }, [travelingStyle]);
+
   return (
     <>
       <section id="bar__page">
         <div className="container">
           <div className="row">
-            <Link to="/bars">
+            <Link className="black" to="/bars">
               <button className="back__btn click">
                 <FontAwesomeIcon icon={faArrowLeft} /> Back
               </button>
@@ -100,57 +100,92 @@ const BarPage = () => {
             </div>
 
             <div className="bar__content--wrapper">
-              <ul className="sustenance__deals">
-                <li>
-                  <b>Food:</b>{" "}
-                  {bar.sustenanceDeals.food
-                    ? bar.sustenanceDeals.food.length == 1
-                      ? bar.sustenanceDeals.food
-                      : bar.sustenanceDeals.food.length == 2
-                      ? bar.sustenanceDeals.food[0] +
-                        " and " +
-                        bar.sustenanceDeals.food[1]
-                      : bar.sustenanceDeals.food.length === 3
-                      ? bar.sustenanceDeals.food[0] +
-                        ", " +
-                        bar.sustenanceDeals.food[1] +
-                        ", and " +
-                        bar.sustenanceDeals.food[2]
-                      : bar.sustenanceDeals.food.join(", ") + "."
-                    : "No Deals"}
-                </li>
-                <li>
-                  <b>Cocktails:</b>{" "}
-                  {bar.sustenanceDeals.cocktails
-                    ? bar.sustenanceDeals.cocktails
-                    : "No Deals"}
-                </li>
-                <li>
-                  <b>Beer</b>{" "}
-                  {bar.sustenanceDeals.beer
-                    ? bar.sustenanceDeals.beer
-                    : "No Deals"}
-                </li>
-                <li>
-                  <b>Wine:</b>{" "}
-                  {bar.sustenanceDeals.wine
-                    ? bar.sustenanceDeals.wine
-                    : "No Deals"}
-                </li>
-                <li>
-                  <b>Shots:</b>{" "}
-                  {bar.sustenanceDeals.shots
-                    ? bar.sustenanceDeals.shots
-                    : "No Deals"}
-                </li>
-                <a
-                  className="menu__link click"
-                  target="_blank"
-                  href={bar.menuLink}>
-                  Menu/Website
-                </a>
-              </ul>
-              <Map location={bar.locationLink} />
+              <div className="left__wrapper">
+                <ul className="sustenance__deals">
+                  <li>
+                    <b>Food:</b>{" "}
+                    {bar.sustenanceDeals.food
+                      ? bar.sustenanceDeals.food.length == 1
+                        ? bar.sustenanceDeals.food
+                        : bar.sustenanceDeals.food.length == 2
+                        ? bar.sustenanceDeals.food[0] +
+                          " and " +
+                          bar.sustenanceDeals.food[1]
+                        : bar.sustenanceDeals.food.length === 3
+                        ? bar.sustenanceDeals.food[0] +
+                          ", " +
+                          bar.sustenanceDeals.food[1] +
+                          ", and " +
+                          bar.sustenanceDeals.food[2]
+                        : bar.sustenanceDeals.food.join(", ") + "."
+                      : "No Deals"}
+                  </li>
+                  <li>
+                    <b>Cocktails:</b>{" "}
+                    {bar.sustenanceDeals.cocktails
+                      ? bar.sustenanceDeals.cocktails
+                      : "No Deals"}
+                  </li>
+                  <li>
+                    <b>Beer</b>{" "}
+                    {bar.sustenanceDeals.beer
+                      ? bar.sustenanceDeals.beer
+                      : "No Deals"}
+                  </li>
+                  <li>
+                    <b>Wine:</b>{" "}
+                    {bar.sustenanceDeals.wine
+                      ? bar.sustenanceDeals.wine
+                      : "No Deals"}
+                  </li>
+                  <li>
+                    <b>Shots:</b>{" "}
+                    {bar.sustenanceDeals.shots
+                      ? bar.sustenanceDeals.shots
+                      : "No Deals"}
+                  </li>
+                  <a
+                    className="menu__link click"
+                    target="_blank"
+                    href={bar.menuLink}>
+                    Menu/Website
+                  </a>
+                </ul>
+                <div className="directions__wrapper">
+                  <div className="directions__btns--wrapper">
+                    <button
+                      className="click"
+                      onClick={() => setBarPageTravelingStyle("DRIVING")}>
+                      Driving
+                    </button>
+                    <button
+                      className="click"
+                      onClick={() => setBarPageTravelingStyle("TRANSIT")}>
+                      Transit
+                    </button>
+                    <button
+                      className="click"
+                      onClick={() => setBarPageTravelingStyle("WALKING")}>
+                      Walking
+                    </button>
+                  </div>
+                  <Directions
+                    bar={bar}
+                    barPageTravelingStyle={barPageTravelingStyle}
+                    travelingStyle={travelingStyle}
+                    coordinates={coordinates}
+                    apiKey={apiKey}
+                    userLocation={userLocation}
+                  />
+                </div>
+              </div>
+
+              <Map
+                apiKey={apiKey}
+                coordinates={coordinates}
+                setCoordinates={setCoordinates}
+                location={bar.locationLink}
+              />
             </div>
           </div>
         </div>

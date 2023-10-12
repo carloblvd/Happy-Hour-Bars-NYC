@@ -1,14 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 
-const Map = ({ location }) => {
-  const [coordinates, setCoordinates] = useState("");
-  const apiKey = "AIzaSyAH833idqMpwLT5kRxVihDepUDzt1jZuY8"; // Replace with your actual API key
+const Map = ({ apiKey, coordinates, setCoordinates, location }) => {
   const zoom = 16;
 
   useEffect(() => {
     // Extract coordinates from the location prop
     const result = extractTextBetweenCharacters(location, "@", ",", 2);
-
     if (result) {
       setCoordinates(result);
     }

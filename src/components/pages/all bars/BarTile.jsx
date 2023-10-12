@@ -1,7 +1,18 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import Directions from "../../ui/Directions";
 
-const BarTile = ({ bar }) => {
+const BarTile = ({
+  bar,
+  userLocation,
+  setTravelingStyle,
+  travelingStyle,
+  setBarTravelTimes,
+  barTravelTimes,
+  barsShowing,
+}) => {
+  const [coordinates, setCoordinates] = useState("");
+  const [barTileLoaded, setBarTileLoaded] = useState(false);
   const weekday = [
     "Sunday",
     "Monday",
@@ -17,56 +28,122 @@ const BarTile = ({ bar }) => {
   const weekHours = bar.daysAndHours;
   const weekSpecials = bar.specificDaySpecial;
   const BarTitle = bar.barName.toLowerCase().replaceAll(" ", "_");
+  const apiKey = "AIzaSyAH833idqMpwLT5kRxVihDepUDzt1jZuY8";
+
+  useEffect(() => {
+    setTimeout(() => {
+      setBarTileLoaded(true);
+    }, 1000);
+  }, [barsShowing]);
+
+  useEffect(() => {
+    // Extract coordinates from the location prop
+    const result = extractTextBetweenCharacters(bar.locationLink, "@", ",", 2);
+
+    if (result) {
+      setCoordinates(result);
+    }
+  }, [bar]);
+
+  const extractTextBetweenCharacters = (
+    inputString,
+    startChar,
+    endChar,
+    occurrence
+  ) => {
+    const startIndex = inputString.indexOf(startChar);
+    let currentIndex = startIndex;
+    let count = 0;
+
+    while (currentIndex !== -1 && count < occurrence) {
+      currentIndex = inputString.indexOf(endChar, currentIndex + 1);
+      count++;
+    }
+
+    if (startIndex !== -1 && currentIndex !== -1) {
+      return inputString.substring(startIndex + 1, currentIndex);
+    } else {
+      return "";
+    }
+  };
+
+  const propsToPass = {
+    travelingStyle: travelingStyle,
+    bar: bar,
+  };
 
   return (
     <>
-      <Link state={bar} className="link" to={`/${BarTitle}`}>
-        <section className="bar__tile click">
-          <div className="bar__name--wrapper">
-            <h1 className="bar__name">{bar.barName}</h1>
-            <p>
-              {bar.neighborhood}, {bar.borough}
-            </p>
-            <p>
-              {day}:{" "}
-              {typeof weekHours[day] === "string" ? (
-                weekHours[day]
-              ) : (
-                <>
-                  {weekHours[day][0] == 12
-                    ? weekHours[day][0] + ":00pm - "
-                    : weekHours[day][0] > 12
-                    ? weekHours[day][0] - 12 + ":00pm - "
-                    : weekHours[day][0] < 12
-                    ? weekHours[day][0] + ":00am - "
-                    : weekHours[day][0]}
-                  {weekHours[day][1] == 0
-                    ? "12:00am"
-                    : weekHours[day][1] > 12
-                    ? weekHours[day][1] - 12 + ":00pm"
-                    : weekHours[day][1] + ":00am"}
-                </>
-              )}
-            </p>
-          </div>
-          <div className="bar__info--wrapper">
-            {weekSpecials[day] ? (
-              <>
-                <p>
-                  <b>Special Today</b>
-                  {" -> "}
+      {barTileLoaded ? (
+        <>
+          <Link state={propsToPass} className="link" to={`/${BarTitle}`}>
+            <section className="bar__tile click">
+              <div className="bar__header--wrapper">
+                <div className="bar__name--wrapper">
+                  <h1 className="bar__name">{bar.barName}</h1>
+                  <p>
+                    {bar.neighborhood}, {bar.borough}
+                  </p>
+                </div>
+                <div className="bar__deal--wrapper">
+                  {weekSpecials[day] ? (
+                    <>
+                      <p>
+                        <b>Special Today</b>
+                        {" -> "}
 
-                  {weekSpecials[day] ? weekSpecials[day] : null}
-                </p>
-                <br />
-              </>
-            ) : null}
-            <p>
-              <b>The Deal</b>: {bar.theDeal}
-            </p>
-          </div>
-        </section>
-      </Link>
+                        {weekSpecials[day] ? weekSpecials[day] : null}
+                      </p>
+                      <br />
+                    </>
+                  ) : null}
+                  <p>
+                    <b>Happy Hour Special</b>: {bar.theDeal}
+                  </p>
+                </div>
+                <div className="bar__info--wrapper">
+                  <p className="bar__tile--hours">
+                    <b>{day}</b>: <br />
+                    {typeof weekHours[day] === "string" ? (
+                      weekHours[day]
+                    ) : (
+                      <>
+                        {weekHours[day][0] == 12
+                          ? weekHours[day][0] + ":00pm - "
+                          : weekHours[day][0] > 12
+                          ? weekHours[day][0] - 12 + ":00pm - "
+                          : weekHours[day][0] < 12
+                          ? weekHours[day][0] + ":00am - "
+                          : weekHours[day][0]}
+                        {weekHours[day][1] == 0
+                          ? "12:00am"
+                          : weekHours[day][1] > 12
+                          ? weekHours[day][1] - 12 + ":00pm"
+                          : weekHours[day][1] + ":00am"}
+                      </>
+                    )}
+                  </p>
+                  <div className="bar__tile--directions">
+                    <Directions
+                      bar={bar}
+                      barTravelTimes={barTravelTimes}
+                      setBarTravelTimes={setBarTravelTimes}
+                      barPageTravelingStyle={travelingStyle}
+                      apiKey={apiKey}
+                      userLocation={userLocation}
+                      coordinates={coordinates}
+                    />
+                  </div>
+                </div>
+              </div>
+            </section>
+          </Link>
+        </>
+      ) : (
+        <>
+          <div className="bar__tile--skeleton skeleton"></div>
+        </>
+      )}
     </>
   );
 };

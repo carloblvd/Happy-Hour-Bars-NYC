@@ -23,7 +23,6 @@ const SignInModal = ({ setUserLoggedIn, setUser, user }) => {
         console.log(error);
         setErrorMessage(true);
       });
-    console.log(user);
   }
 
   const showModal = () => {

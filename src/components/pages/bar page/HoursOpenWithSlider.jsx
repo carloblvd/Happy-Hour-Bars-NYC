@@ -15,30 +15,33 @@ const HoursOpenWithSlider = ({
 }) => {
   const sliderRef = React.useRef(null);
 
-  const weekday = [
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-    "Sunday",
-  ];
-
   useEffect(() => {
+    const weekday = [
+      "Sunday",
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+    ];
     const d = new Date();
-    const day = weekday[d.getDay()];
+    const currentDay = weekday[d.getDay()];
 
-    const Today = document.getElementsByClassName(day)[0];
-    if (Today) {
-      Today.style.borderColor = "#2d2de3";
+    for (let i = 0; i < weekday.length; i++) {
+      const day = weekday[i];
+      const element = document.getElementsByClassName(day)[0];
+
+      if (element) {
+        element.style.borderColor = day === currentDay ? "#2d2de3" : "#d8d8d8";
+      }
     }
   }, []);
 
   const getCurrentDayIndex = () => {
     const currentDate = new Date();
-    const currentDay = currentDate.getDay(); // 0 for Sunday, 1 for Monday, and so on
-    return currentDay === 0 ? 6 : currentDay - 1; // Adjusting the index to match your weekday array
+    const currentDay = currentDate.getDay();
+    return currentDay === 0 ? 6 : currentDay - 1;
   };
 
   const initialSlideIndex = getCurrentDayIndex();

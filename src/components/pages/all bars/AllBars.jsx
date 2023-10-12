@@ -1,14 +1,18 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { BarData } from "../../../BarData";
 import BarTile from "./BarTile";
 import FilterBar from "./FilterBar";
 import NoResultsImg from "../../../assets/undraw_searching.svg";
 import { useNavigate } from "react-router";
 
-const AllBars = ({ userLoggedIn }) => {
+const AllBars = ({ userLoggedIn, userLocation }) => {
   const navigate = useNavigate();
+  const [barTravelTimes, setBarTravelTimes] = useState(
+    [...BarData].map((bar) => ({ barName: bar.barName, duration: undefined }))
+  );
 
-  const allBars = BarData.sort((a, b) => {
+  const [travelingStyle, setTravelingStyle] = useState("TRANSIT");
+  const allBars = [...BarData].sort((a, b) => {
     const nameA = a.barName.toLowerCase();
     const nameB = b.barName.toLowerCase();
 
@@ -26,6 +30,9 @@ const AllBars = ({ userLoggedIn }) => {
       ) : (
         <section id="AllBars">
           <FilterBar
+            barTravelTimes={barTravelTimes}
+            travelingStyle={travelingStyle}
+            setTravelingStyle={setTravelingStyle}
             setBarsShowing={setBarsShowing}
             allBars={allBars}
             barsShowing={barsShowing}
@@ -37,7 +44,16 @@ const AllBars = ({ userLoggedIn }) => {
                   <>
                     {barsShowing.map((bar, index) => (
                       <li className="bar__list--item" key={index}>
-                        <BarTile bar={bar} index={index} />
+                        <BarTile
+                          barsShowing={barsShowing}
+                          barTravelTimes={barTravelTimes}
+                          setBarTravelTimes={setBarTravelTimes}
+                          travelingStyle={travelingStyle}
+                          setTravelingStyle={setTravelingStyle}
+                          userLocation={userLocation}
+                          bar={bar}
+                          index={index}
+                        />
                       </li>
                     ))}
                   </>
