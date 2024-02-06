@@ -321,6 +321,20 @@ const FilterBar = ({
                         : "click"
                     }`}
                     onClick={(e) => {
+                      handleButtonClick("Soho");
+                      filterNeighborhood(e);
+                      setSelectedTravelingStyle(null);
+                    }}
+                    value="Soho">
+                    Soho
+                  </button>
+                  <button
+                    className={`filter__btn ${
+                      selectedNeighborhood === "Upper East Side"
+                        ? "selected"
+                        : "click"
+                    }`}
+                    onClick={(e) => {
                       handleButtonClick("Upper East Side");
                       filterNeighborhood(e);
                       setSelectedTravelingStyle(null);

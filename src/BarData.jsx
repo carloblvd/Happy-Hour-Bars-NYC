@@ -389,6 +389,39 @@ export const BarData = [
     theDeal: "$7 Tapas, Beer, and Sangria",
   },
   {
+    barName: "Botanica",
+    daysAndHours: {
+      Monday: [17, 19],
+      Tuesday: [17, 19],
+      Wednesday: [17, 19],
+      Thursday: [17, 19],
+      Friday: [17, 19],
+      Saturday: [17, 19],
+      Sunday: [16, 19],
+    },
+    neighborhood: "Soho",
+    borough: "Manhattan",
+    locationLink:
+      "https://www.google.com/maps/place/Botanica+Bar/@40.7242057,-73.9972148,15z/data=!4m6!3m5!1s0x89c2f3797fd23ebb:0xab1f7191e64e2370!8m2!3d40.724661!4d-73.9947686!16s%2Fg%2F1q67wbgck?entry=ttu",
+    sustenanceDeals: {
+      food: false,
+      cocktails: "$6 Well Drinks and $8 Frozens",
+      beer: "$2 Off Draft Beers",
+      wine: "$6 House Wines",
+      shots: false,
+    },
+    specificDaySpecial: {
+      Monday: false,
+      Tuesday: false,
+      Wednesday: false,
+      thursday: false,
+      Friday: false,
+      Saturday: false,
+      Sunday: false,
+    },
+    theDeal: "$6 beer + shot special, $8 frozen drinks and $2 beers.",
+  },
+  {
     barName: "Poco NYC",
     daysAndHours: {
       Monday: "No Happy Hour",
