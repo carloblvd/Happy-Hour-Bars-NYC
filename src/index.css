@@ -281,6 +281,7 @@ ALL BARS
 }
 
 .bar__container {
+  margin: 24px 0;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -949,8 +950,7 @@ LARGE TABLETS
   }
 
   .hours__open li {
-    min-height: 100px;
-    height: auto;
+    height: 200pxff;
     width: 50px;
     border-radius: 12px;
   }

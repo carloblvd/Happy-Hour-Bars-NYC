@@ -3,6 +3,7 @@ import { useJsApiLoader } from "@react-google-maps/api";
 import { useLocation } from "react-router";
 
 const Directions = ({
+  barTitle,
   apiKey,
   coordinates,
   userLocation,

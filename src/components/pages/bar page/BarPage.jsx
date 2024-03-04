@@ -10,7 +10,7 @@ import Directions from "../../ui/Directions";
 
 const BarPage = ({ userLocation }) => {
   const location = useLocation();
-  const { bar, travelingStyle } = location.state;
+  const { bar, travelingStyle, barTitle } = location.state;
   const [barPageTravelingStyle, setBarPageTravelingStyle] =
     useState(travelingStyle);
   const [coordinates, setCoordinates] = useState("");
@@ -182,6 +182,7 @@ const BarPage = ({ userLocation }) => {
 
               <Map
                 apiKey={apiKey}
+                barTitle={barTitle}
                 coordinates={coordinates}
                 setCoordinates={setCoordinates}
                 location={bar.locationLink}

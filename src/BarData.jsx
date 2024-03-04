@@ -389,7 +389,7 @@ export const BarData = [
     theDeal: "$7 Tapas, Beer, and Sangria",
   },
   {
-    barName: "Botanica",
+    barName: "Botanica Bar",
     daysAndHours: {
       Monday: [17, 19],
       Tuesday: [17, 19],
@@ -1292,7 +1292,7 @@ export const BarData = [
     locationLink:
       "https://www.google.com/maps/place/Fulton+Burger+-+Dumbo/@40.7027513,-73.9960975,17z/data=!3m1!4b1!4m6!3m5!1s0x89c25b2990369fed:0xd1ff89f578ffe9c6!8m2!3d40.7027473!4d-73.9935226!16s%2Fg%2F11hfd15gg1?entry=ttu",
     sustenanceDeals: {
-      food: ["", "", "", "and more"],
+      food: false,
       cocktails: "$8 Margaritas and Mojitos $65 Margarita Towers",
       beer: "$6 Draft Beer, $40 Beer Towers",
       wine: false,

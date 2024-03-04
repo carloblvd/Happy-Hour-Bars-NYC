@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 
-const Map = ({ apiKey, coordinates, setCoordinates, location }) => {
+const Map = ({ apiKey, barTitle, location, setCoordinates, coordinates }) => {
   const zoom = 16;
 
   useEffect(() => {
@@ -33,7 +33,7 @@ const Map = ({ apiKey, coordinates, setCoordinates, location }) => {
     }
   };
 
-  const url = `https://maps.googleapis.com/maps/api/staticmap?markers=color:red%7C${coordinates}&center=${coordinates}&zoom=${zoom}&size=400x400&key=${apiKey}`;
+  const url = `https://maps.googleapis.com/maps/api/staticmap?markers=color:red%7C${barTitle},New+York,USA&zoom=${zoom}&size=400x400&key=${apiKey}`;
 
   return (
     <>

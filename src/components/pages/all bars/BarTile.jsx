@@ -5,7 +5,6 @@ import Directions from "../../ui/Directions";
 const BarTile = ({
   bar,
   userLocation,
-  setTravelingStyle,
   travelingStyle,
   setBarTravelTimes,
   barTravelTimes,
@@ -27,7 +26,7 @@ const BarTile = ({
   let day = weekday[d.getDay()];
   const weekHours = bar.daysAndHours;
   const weekSpecials = bar.specificDaySpecial;
-  const BarTitle = bar.barName.toLowerCase().replaceAll(" ", "_");
+  const barTitle = bar.barName.replaceAll(" ", "+");
   const apiKey = "AIzaSyAH833idqMpwLT5kRxVihDepUDzt1jZuY8";
 
   useEffect(() => {
@@ -70,13 +69,14 @@ const BarTile = ({
   const propsToPass = {
     travelingStyle: travelingStyle,
     bar: bar,
+    barTitle: barTitle,
   };
 
   return (
     <>
       {barTileLoaded ? (
         <>
-          <Link state={propsToPass} className="link" to={`/${BarTitle}`}>
+          <Link state={propsToPass} className="link" to={`/${barTitle}`}>
             <section className="bar__tile click">
               <div className="bar__header--wrapper">
                 <div className="bar__name--wrapper">
