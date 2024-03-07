@@ -74,119 +74,122 @@ const BarPage = ({ userLocation }) => {
               </h2>
             </div>
             <br />
-            <ul className="hours__open show_above_900px">
-              <HoursOpenWithoutSlider
-                bar={bar}
-                selectCharactersUntilColon={selectCharactersUntilColon}
-                convertHours={convertHours}
-              />
-            </ul>
-            <div className="show_below_900px">
-              <HoursOpenWithSlider
-                bar={bar}
-                selectCharactersUntilColon={selectCharactersUntilColon}
-                convertHours={convertHours}
-              />
-            </div>
-
-            <br />
-            <div className="sustenance__deals--disclaimer">
-              <h3>Disclaimer</h3>
-              The following list exclusively features Happy Hour promotions as
-              advertised on the website or via their respective social media
-              channels. It's important to note that the absence of a Happy Hour
-              promotion for a particular item at a given bar does not imply
-              unavailability of that item on their menu.
-            </div>
-
-            <div className="bar__content--wrapper">
-              <div className="left__wrapper">
-                <ul className="sustenance__deals">
-                  <li>
-                    <b>Food:</b>{" "}
-                    {bar.sustenanceDeals.food
-                      ? bar.sustenanceDeals.food.length == 1
-                        ? bar.sustenanceDeals.food
-                        : bar.sustenanceDeals.food.length == 2
-                        ? bar.sustenanceDeals.food[0] +
-                          " and " +
-                          bar.sustenanceDeals.food[1]
-                        : bar.sustenanceDeals.food.length === 3
-                        ? bar.sustenanceDeals.food[0] +
-                          ", " +
-                          bar.sustenanceDeals.food[1] +
-                          ", and " +
-                          bar.sustenanceDeals.food[2]
-                        : bar.sustenanceDeals.food.join(", ") + "."
-                      : "No Deals"}
-                  </li>
-                  <li>
-                    <b>Cocktails:</b>{" "}
-                    {bar.sustenanceDeals.cocktails
-                      ? bar.sustenanceDeals.cocktails
-                      : "No Deals"}
-                  </li>
-                  <li>
-                    <b>Beer</b>{" "}
-                    {bar.sustenanceDeals.beer
-                      ? bar.sustenanceDeals.beer
-                      : "No Deals"}
-                  </li>
-                  <li>
-                    <b>Wine:</b>{" "}
-                    {bar.sustenanceDeals.wine
-                      ? bar.sustenanceDeals.wine
-                      : "No Deals"}
-                  </li>
-                  <li>
-                    <b>Shots:</b>{" "}
-                    {bar.sustenanceDeals.shots
-                      ? bar.sustenanceDeals.shots
-                      : "No Deals"}
-                  </li>
-                  <a
-                    className="menu__link click"
-                    target="_blank"
-                    href={bar.menuLink}>
-                    Menu/Website
-                  </a>
-                </ul>
-                <div className="directions__wrapper">
-                  <div className="directions__btns--wrapper">
-                    <button
-                      className="click"
-                      onClick={() => setBarPageTravelingStyle("DRIVING")}>
-                      Driving
-                    </button>
-                    <button
-                      className="click"
-                      onClick={() => setBarPageTravelingStyle("TRANSIT")}>
-                      Transit
-                    </button>
-                    <button
-                      className="click"
-                      onClick={() => setBarPageTravelingStyle("WALKING")}>
-                      Walking
-                    </button>
-                  </div>
-                  <Directions
+            <div className="bar__page--content-container">
+              <div className="slider_and_disclaimer">
+                <ul className="hours__open show_above_900px">
+                  <HoursOpenWithoutSlider
                     bar={bar}
-                    barPageTravelingStyle={barPageTravelingStyle}
-                    travelingStyle={travelingStyle}
-                    coordinates={coordinates}
-                    apiKey={apiKey}
-                    userLocation={userLocation}
+                    selectCharactersUntilColon={selectCharactersUntilColon}
+                    convertHours={convertHours}
+                  />
+                </ul>
+                <div className="show_below_900px">
+                  <HoursOpenWithSlider
+                    bar={bar}
+                    selectCharactersUntilColon={selectCharactersUntilColon}
+                    convertHours={convertHours}
                   />
                 </div>
-              </div>
 
-              <Map
-                apiKey={apiKey}
-                barTitle={barTitle}
-                coordinates={coordinates}
-                setCoordinates={setCoordinates}
-                location={bar.locationLink}
-              />
+                <br />
+                <div className="sustenance__deals--disclaimer">
+                  <h3>Disclaimer</h3>
+                  The following list exclusively features Happy Hour promotions
+                  as advertised on the website or via their respective social
+                  media channels. It's important to note that the absence of a
+                  Happy Hour promotion for a particular item at a given bar does
+                  not imply unavailability of that item on their menu.
+                </div>
+              </div>
+              <div className="bar__content--wrapper">
+                <div className="left__wrapper">
+                  <ul className="sustenance__deals">
+                    <li>
+                      <b>Food:</b>{" "}
+                      {bar.sustenanceDeals.food
+                        ? bar.sustenanceDeals.food.length == 1
+                          ? bar.sustenanceDeals.food
+                          : bar.sustenanceDeals.food.length == 2
+                          ? bar.sustenanceDeals.food[0] +
+                            " and " +
+                            bar.sustenanceDeals.food[1]
+                          : bar.sustenanceDeals.food.length === 3
+                          ? bar.sustenanceDeals.food[0] +
+                            ", " +
+                            bar.sustenanceDeals.food[1] +
+                            ", and " +
+                            bar.sustenanceDeals.food[2]
+                          : bar.sustenanceDeals.food.join(", ") + "."
+                        : "No Deals"}
+                    </li>
+                    <li>
+                      <b>Cocktails:</b>{" "}
+                      {bar.sustenanceDeals.cocktails
+                        ? bar.sustenanceDeals.cocktails
+                        : "No Deals"}
+                    </li>
+                    <li>
+                      <b>Beer</b>{" "}
+                      {bar.sustenanceDeals.beer
+                        ? bar.sustenanceDeals.beer
+                        : "No Deals"}
+                    </li>
+                    <li>
+                      <b>Wine:</b>{" "}
+                      {bar.sustenanceDeals.wine
+                        ? bar.sustenanceDeals.wine
+                        : "No Deals"}
+                    </li>
+                    <li>
+                      <b>Shots:</b>{" "}
+                      {bar.sustenanceDeals.shots
+                        ? bar.sustenanceDeals.shots
+                        : "No Deals"}
+                    </li>
+                    <a
+                      className="menu__link click"
+                      target="_blank"
+                      href={bar.menuLink}>
+                      Menu/Website
+                    </a>
+                  </ul>
+                  <div className="directions__wrapper">
+                    <div className="directions__btns--wrapper">
+                      <button
+                        className="click"
+                        onClick={() => setBarPageTravelingStyle("DRIVING")}>
+                        Driving
+                      </button>
+                      <button
+                        className="click"
+                        onClick={() => setBarPageTravelingStyle("TRANSIT")}>
+                        Transit
+                      </button>
+                      <button
+                        className="click"
+                        onClick={() => setBarPageTravelingStyle("WALKING")}>
+                        Walking
+                      </button>
+                    </div>
+                    <Directions
+                      bar={bar}
+                      barPageTravelingStyle={barPageTravelingStyle}
+                      travelingStyle={travelingStyle}
+                      coordinates={coordinates}
+                      apiKey={apiKey}
+                      userLocation={userLocation}
+                    />
+                  </div>
+                </div>
+
+                <Map
+                  apiKey={apiKey}
+                  barTitle={barTitle}
+                  coordinates={coordinates}
+                  setCoordinates={setCoordinates}
+                  location={bar.locationLink}
+                />
+              </div>
             </div>
           </div>
         </div>

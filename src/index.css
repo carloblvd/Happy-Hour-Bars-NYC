@@ -947,10 +947,11 @@ LARGE TABLETS
 
   .hours__open {
     width: 90%;
+    margin-top: 0;
   }
 
   .hours__open li {
-    height: 200pxff;
+    height: 200px;
     width: 50px;
     border-radius: 12px;
   }
@@ -1017,6 +1018,7 @@ TABLETS
     align-items: center;
     justify-content: center;
   }
+
   .nav__header,
   .landing__title {
     font-size: 32px;
@@ -1063,7 +1065,7 @@ TABLETS
   }
 
   .bar__content--wrapper {
-    flex-direction: column;
+    flex-direction: column-reverse;
   }
 
   .bar__content--wrapper ul,
@@ -1071,6 +1073,11 @@ TABLETS
   .sustenance__deals--disclaimer {
     width: 100%;
     max-width: 100%;
+  }
+
+  .bar__page--content-container {
+    display: flex;
+    flex-direction: column-reverse;
   }
 
   .menu__link {
@@ -1090,6 +1097,10 @@ TABLETS
     height: 400px;
   }
 
+  .sustenance__deals {
+    margin-top: 12px;
+  }
+
   .sustenance__deals li {
     font-size: 20px;
   }
@@ -1101,11 +1112,15 @@ TABLETS
   .left__wrapper {
     width: 100%;
     align-items: center;
-    flex-direction: column;
+    flex-direction: column-reverse;
   }
 
   .directions__wrapper {
-    margin-top: 24px;
+    margin-top: 12px;
+  }
+
+  .slider_and_disclaimer {
+    margin-top: 12px;
   }
 }
 

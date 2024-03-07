@@ -17,21 +17,28 @@ function App() {
   const [loadingState, setLoadingState] = useState(true);
   const [userLocation, setUserLocation] = useState(null);
 
-  AOS.init({
-    duration: 1000,
-  });
-
-  function componentDidMount() {
-    navigator.geolocation.getCurrentPosition(function (position) {
-      setUserLocation({
-        latitude: position.coords.latitude,
-        longitude: position.coords.longitude,
-      });
-    });
-  }
-
   useEffect(() => {
-    componentDidMount();
+    AOS.init({
+      duration: 1000,
+    });
+
+    const watchId = navigator.geolocation.watchPosition(
+      function (position) {
+        setUserLocation({
+          latitude: position.coords.latitude,
+          longitude: position.coords.longitude,
+        });
+      },
+      function (error) {
+        console.error("Error getting user location:", error);
+      },
+      {
+        enableHighAccuracy: true, // Request high accuracy
+        maximumAge: 30000, // Accept cached positions up to 30 seconds old
+        timeout: 10000, // Allow up to 10 seconds for location acquisition
+      }
+    );
+
     onAuthStateChanged(auth, (user) => {
       if (user) {
         setTimeout(() => {
@@ -45,6 +52,10 @@ function App() {
         }, 200);
       }
     });
+
+    return () => {
+      navigator.geolocation.clearWatch(watchId);
+    };
   }, []);
 
   return (
