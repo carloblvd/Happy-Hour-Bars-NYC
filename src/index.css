@@ -984,11 +984,11 @@ LARGE TABLETS
   }
 
   .slider-next-btn {
-    right: 0px;
+    right: -10px;
   }
 
   .slider-prev-btn {
-    left: 0px;
+    left: -10px;
   }
 
   .bar__content--wrapper {
