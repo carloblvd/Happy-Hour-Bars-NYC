@@ -33,7 +33,7 @@ const Map = ({ apiKey, barTitle, location, setCoordinates, coordinates }) => {
     }
   };
 
-  const url = `https://maps.googleapis.com/maps/api/staticmap?markers=color:red%7C${barTitle},New+York,USA&zoom=${zoom}&size=400x400&key=${apiKey}`;
+  const url = `https://maps.googleapis.com/maps/api/staticmap?markers=color:red%7C${barTitle},New+York+City,New+York,USA&zoom=${zoom}&size=400x400&key=${apiKey}`;
 
   return (
     <>

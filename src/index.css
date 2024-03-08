@@ -1153,6 +1153,11 @@ LARGE PHONES
     margin-right: 12px;
   }
 
+  .landing__content {
+    height: auto;
+    margin-top: 24px;
+  }
+
   .landing__img--wrapper {
     width: 60%;
   }

@@ -126,6 +126,7 @@ const BarTile = ({
                   <div className="bar__tile--directions">
                     <Directions
                       bar={bar}
+                      barTitle={barTitle}
                       barTravelTimes={barTravelTimes}
                       setBarTravelTimes={setBarTravelTimes}
                       barPageTravelingStyle={travelingStyle}

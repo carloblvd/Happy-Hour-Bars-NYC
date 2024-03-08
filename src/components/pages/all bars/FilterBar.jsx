@@ -7,7 +7,7 @@ import {
   faWineGlass,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 const FilterBar = ({
   barsShowing,
@@ -34,13 +34,6 @@ const FilterBar = ({
     "Friday",
     "Saturday",
   ];
-
-  // useEffect(() => {
-  //   setBarsSortedByDuration(
-  //     [...barTravelTimes].sort((a, b) => a.duration - b.duration)
-  //   );
-  //   console.log(SortedByDuration);
-  // }, [barTravelTimes]);
 
   const d = new Date();
   let day = weekday[d.getDay()];

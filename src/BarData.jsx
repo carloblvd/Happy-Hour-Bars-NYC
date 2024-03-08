@@ -600,7 +600,7 @@ export const BarData = [
     theDeal: "$10 tacos, $8 margaritas, and $6 beers.",
   },
   {
-    barName: "Bella Union | Rooftop Bar",
+    barName: "Bella Union",
     daysAndHours: {
       Monday: [16, 20],
       Tuesday: [16, 20],

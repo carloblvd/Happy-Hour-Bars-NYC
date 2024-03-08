@@ -37,7 +37,7 @@ const Directions = ({
           const directionsService = new window.google.maps.DirectionsService();
           const request = {
             origin: userCoords,
-            destination: coordinates,
+            destination: `${barTitle},New+York+City`,
             travelMode: barPageTravelingStyle,
           };
 

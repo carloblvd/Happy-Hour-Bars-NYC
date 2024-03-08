@@ -172,6 +172,7 @@ const BarPage = ({ userLocation }) => {
                       </button>
                     </div>
                     <Directions
+                      barTitle={barTitle}
                       bar={bar}
                       barPageTravelingStyle={barPageTravelingStyle}
                       travelingStyle={travelingStyle}
