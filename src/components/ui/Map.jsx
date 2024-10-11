@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 
-const Map = ({ apiKey, barTitle, location, setCoordinates, coordinates }) => {
+const Map = ({ barTitle, location, setCoordinates }) => {
   const zoom = 16;
 
   useEffect(() => {
@@ -10,6 +10,8 @@ const Map = ({ apiKey, barTitle, location, setCoordinates, coordinates }) => {
       setCoordinates(result);
     }
   }, [location]);
+
+  const googleMapsApiKey = "AIzaSyDevhYPl5wbwwPdvBjNBj1ysHX8KYattDI";
 
   const extractTextBetweenCharacters = (
     inputString,
@@ -33,7 +35,7 @@ const Map = ({ apiKey, barTitle, location, setCoordinates, coordinates }) => {
     }
   };
 
-  const url = `https://maps.googleapis.com/maps/api/staticmap?markers=color:red%7C${barTitle},New+York+City,New+York,USA&zoom=${zoom}&size=400x400&key=${apiKey}`;
+  const url = `https://maps.googleapis.com/maps/api/staticmap?markers=color:red%7C${barTitle},New+York+City,New+York,USA&zoom=${zoom}&size=400x400&key=${googleMapsApiKey}`;
 
   return (
     <>

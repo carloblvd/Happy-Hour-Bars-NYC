@@ -1,34 +1,21 @@
 import React, { useEffect, useState } from "react";
-import { useJsApiLoader } from "@react-google-maps/api";
 import { useLocation } from "react-router";
 
 const Directions = ({
   barTitle,
-  apiKey,
   coordinates,
-  userLocation,
   barPageTravelingStyle,
   travelingStyle,
   setBarTravelTimes,
   barTravelTimes,
   bar,
+  userCoords,
 }) => {
   const location = useLocation();
-  const [userCoords, setUserCoords] = useState(null);
   const [directionsResponse, setDirectionsResponse] = useState(null);
   const [distance, setDistance] = useState("");
-  const [duration, setDuration] = useState("");
   const [isLoading, setIsLoading] = useState(true);
-
-  const { isLoaded } = useJsApiLoader({
-    googleMapsApiKey: apiKey,
-  });
-
-  useEffect(() => {
-    if (isLoaded && userLocation) {
-      setUserCoords(`${userLocation.latitude},${userLocation.longitude}`);
-    }
-  }, [isLoaded, userLocation]);
+  const [duration, setDuration] = useState("");
 
   useEffect(() => {
     if (userCoords) {

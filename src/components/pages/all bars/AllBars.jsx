@@ -4,9 +4,12 @@ import BarTile from "./BarTile";
 import FilterBar from "./FilterBar";
 import NoResultsImg from "../../../assets/undraw_searching.svg";
 import { useNavigate } from "react-router";
+import { useJsApiLoader } from "@react-google-maps/api";
 
 const AllBars = ({ userLoggedIn, userLocation }) => {
+  const apiKey = "AIzaSyApSPdLssNWaAJAxVdj2YvczNJ2GBSSxYI";
   const navigate = useNavigate();
+  const [userCoords, setUserCoords] = useState(null);
   const [barTravelTimes, setBarTravelTimes] = useState(
     [...BarData].map((bar) => ({ barName: bar.barName, duration: undefined }))
   );
@@ -22,6 +25,16 @@ const AllBars = ({ userLoggedIn, userLocation }) => {
   });
 
   const [barsShowing, setBarsShowing] = useState(allBars);
+
+  const { isLoaded } = useJsApiLoader({
+    googleMapsApiKey: apiKey,
+  });
+
+  useEffect(() => {
+    if (isLoaded && userLocation) {
+      setUserCoords(`${userLocation.latitude},${userLocation.longitude}`);
+    }
+  }, [isLoaded, userLocation]);
 
   return (
     <>
@@ -45,6 +58,8 @@ const AllBars = ({ userLoggedIn, userLocation }) => {
                     {barsShowing.map((bar, index) => (
                       <li className="bar__list--item" key={index}>
                         <BarTile
+                          userCoords={userCoords}
+                          isLoaded={isLoaded}
                           barsShowing={barsShowing}
                           barTravelTimes={barTravelTimes}
                           setBarTravelTimes={setBarTravelTimes}
@@ -53,6 +68,7 @@ const AllBars = ({ userLoggedIn, userLocation }) => {
                           userLocation={userLocation}
                           bar={bar}
                           index={index}
+                          apiKey={apiKey}
                         />
                       </li>
                     ))}

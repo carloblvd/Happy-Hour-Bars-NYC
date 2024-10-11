@@ -9,6 +9,8 @@ const BarTile = ({
   setBarTravelTimes,
   barTravelTimes,
   barsShowing,
+  userCoords,
+  apiKey,
 }) => {
   const [coordinates, setCoordinates] = useState("");
   const [barTileLoaded, setBarTileLoaded] = useState(false);
@@ -27,7 +29,6 @@ const BarTile = ({
   const weekHours = bar.daysAndHours;
   const weekSpecials = bar.specificDaySpecial;
   const barTitle = bar.barName.replaceAll(" ", "+");
-  const apiKey = "AIzaSyAH833idqMpwLT5kRxVihDepUDzt1jZuY8";
 
   useEffect(() => {
     setTimeout(() => {
@@ -70,6 +71,8 @@ const BarTile = ({
     travelingStyle: travelingStyle,
     bar: bar,
     barTitle: barTitle,
+    userCoords: userCoords,
+    apiKey: apiKey,
   };
 
   return (
@@ -125,12 +128,12 @@ const BarTile = ({
                   </p>
                   <div className="bar__tile--directions">
                     <Directions
+                      userCoords={userCoords}
                       bar={bar}
                       barTitle={barTitle}
                       barTravelTimes={barTravelTimes}
                       setBarTravelTimes={setBarTravelTimes}
                       barPageTravelingStyle={travelingStyle}
-                      apiKey={apiKey}
                       userLocation={userLocation}
                       coordinates={coordinates}
                     />

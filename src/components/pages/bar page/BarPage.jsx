@@ -10,11 +10,10 @@ import Directions from "../../ui/Directions";
 
 const BarPage = ({ userLocation }) => {
   const location = useLocation();
-  const { bar, travelingStyle, barTitle } = location.state;
+  const { bar, travelingStyle, barTitle, userCoords, apiKey } = location.state;
   const [barPageTravelingStyle, setBarPageTravelingStyle] =
     useState(travelingStyle);
   const [coordinates, setCoordinates] = useState("");
-  const apiKey = "AIzaSyAH833idqMpwLT5kRxVihDepUDzt1jZuY8";
 
   function selectCharactersUntilColon(inputString) {
     const index = inputString.indexOf(":");
@@ -172,6 +171,7 @@ const BarPage = ({ userLocation }) => {
                       </button>
                     </div>
                     <Directions
+                      userCoords={userCoords}
                       barTitle={barTitle}
                       bar={bar}
                       barPageTravelingStyle={barPageTravelingStyle}
@@ -184,7 +184,6 @@ const BarPage = ({ userLocation }) => {
                 </div>
 
                 <Map
-                  apiKey={apiKey}
                   barTitle={barTitle}
                   coordinates={coordinates}
                   setCoordinates={setCoordinates}
